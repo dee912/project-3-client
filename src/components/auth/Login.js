@@ -19,7 +19,7 @@ export default function Login() {
     try {
       const res = await loginM8(formdata)
       setToken(res.data.token)
-      history.push('/bands')
+      history.push('/pl8s')
     } catch (err) {
       setIsError(true)
     }
