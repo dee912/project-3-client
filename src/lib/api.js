@@ -1,6 +1,13 @@
 import axios from 'axios'
+import { getToken } from './auth'
 
 const baseUrl = '/api'
+
+function headers() {
+  return {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }
+}
 
 export function getAllPl8s() {
   return axios.get(`${baseUrl}/pl8s`)
@@ -17,3 +24,8 @@ export function registerM8(formdata) {
 export function loginM8(formdata) {
   return axios.post(`${baseUrl}/login`, formdata)
 }
+
+export function m8Profile() {
+  return axios.get(`${baseUrl}/m8s/currentM8`, headers())
+}
+

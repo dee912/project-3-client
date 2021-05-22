@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { getAllPl8s } from '../../lib/api'
+import { getPayload } from '../../lib/auth'
+// import { m8Profile } from '../../lib/api'
 
 export default function Nav() {
   const history = useHistory()
   const [searchValue, setSearchValue] = useState(null)
+  const { m8Id } = getPayload()
 
   const handleChange = (e) => {
     setSearchValue(e.target.value)
@@ -34,7 +37,7 @@ export default function Nav() {
           <Link to="" onClick={randomPl8} className="navbar-item">
             Random PL8
           </Link>
-          <Link to="/" className="navbar-item">
+          <Link to={`/m8/${m8Id}`} className="navbar-item">
             M8S
           </Link>
         </div>

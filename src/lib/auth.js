@@ -6,15 +6,24 @@ export function getToken() {
   return window.localStorage.getItem('token')
 }
 
+export function setId(id) {
+  window.localStorage.setItem('id', id)
+}
+
+export function getId() {
+  return window.localStorage.getItem('id')
+}
+
 export function removeToken() {
   window.localStorage.removeItem('token')
 }
 
-function getPayload() {
+export function getPayload() {
   const token = getToken()
   if (!token) return false
   const parts = token.split('.')
   if (parts.length < 3) return false
+  console.log('this one:', JSON.parse(atob(parts[1])) )
   return JSON.parse(atob(parts[1])) 
 }
 
