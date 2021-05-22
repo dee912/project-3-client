@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
+// import { useParams } from 'react-router'
 import { m8Profile } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 
-export default function PL8Show() {
+export default function M8Show() {
   const { m8Id } = getPayload()
   const [m8, setM8] = useState(null)
   console.log(m8Id)
@@ -11,6 +12,7 @@ export default function PL8Show() {
     const getData = async () => {
       try {
         const { data } = await m8Profile(m8Id)
+        console.log(data)
         setM8(data)
       } catch (err) {
         console.log(err)
