@@ -25,7 +25,7 @@ export function loginM8(formdata) {
   return axios.post(`${baseUrl}/login`, formdata)
 }
 
-export function m8Profile() {
-  return axios.get(`${baseUrl}/m8s/currentM8`, headers())
+export function m8Profile(m8Id) {
+  return axios.get(`${baseUrl}/m8/${m8Id}`, headers())
 }
 
