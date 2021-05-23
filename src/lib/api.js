@@ -17,6 +17,10 @@ export function getSinglePl8(pl8Id) {
   return axios.get(`${baseUrl}/pl8s/${pl8Id}`)
 }
 
+export function cr8APl8(formdata) {
+  return axios.post(`${baseUrl}/pl8s`, formdata, headers())
+}
+
 export function registerM8(formdata) {
   return axios.post(`${baseUrl}/become-a-m8`, formdata)
 }
