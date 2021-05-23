@@ -1,1 +1,42 @@
+.home {
+  display: flex;
+  width: 100%;
+  height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .plate{
+    cursor: pointer;
+    transition: transform 50ms ease-in-out;
+    overflow: visible;
+    .topLeft, .topRight, .bottomLeft, .bottomRight {
+      transition: transform 1s;
+      transform-origin: center;
+    }
+    .crack {
+      display: none;
+    }
+  }
+  .plate.grow:not(.exploded){
+    transform: scale(1.4);
+  }
+  .exploded {
+    cursor: initial;
+    .topLeft {
+      transform: translate(-8vw, -9vh) rotate(-70deg);
+    }
+    .topRight {
+      transform: translate(8vw, -5vh) rotate(100deg);
+    }
+    .bottomLeft {
+      transform: translate(-6vw, 12vh) rotate(60deg);
+    }
+    .bottomRight {
+      transform: translate(6vw, 10vh) rotate(120deg);
+    }
+  }
+}
+
+
 @import '~bulma/bulma.sass';
