@@ -1,7 +1,9 @@
 import { useHistory } from 'react-router-dom'
 import CreatableSelect from 'react-select/creatable'
+import { nanoid } from 'nanoid'
 import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
+import { useState } from 'react'
 
 export default function Cr8APl8() {
   const history = useHistory
@@ -15,6 +17,7 @@ export default function Cr8APl8() {
     cookTime: 0,
     imgage: '',
   })
+  const [ids, setIds] = useState([nanoid()])
 
   const handleMultiSelectChange = (selected, name) => {
     const selectedItems = selected ? selected.map(item => item.value) : []
@@ -24,16 +27,19 @@ export default function Cr8APl8() {
   const handleAddRecipeStepInput = () => {
     if (formdata.recipe[formdata.recipe.length - 1]) {
       handleChange({ target: { name: 'recipe', value: [...formdata.recipe, ''] } })
+      setIds([...ids, nanoid()])
     }
   }
 
-  const handleAddRecipeStep = (event, i) => {
+  const handleChangeRecipeStep = (event, i) => {
+    console.log(event)
     const newArray = [...formdata.recipe]
     newArray[i] = event.target.value
-    //handleChange({ target: { name: 'recipe', value: newArray } })
+    console.log(newArray[i])
+    console.log(event.target.value)
     console.log(newArray)
+    handleChange({ target: { name: 'recipe', value: newArray } })
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -109,11 +115,11 @@ export default function Cr8APl8() {
               <label className="label">Recipe</label>
               {formdata.recipe.map((step, i) => (
                 <input
-                  key={step}
+                  key={ids[i]}
                   className={'input'}
                   placeholder="Add step"
                   name="recipe"
-                  onChange={(event) => handleAddRecipeStep(event, i)}
+                  onChange={(event) => handleChangeRecipeStep(event, i)}
                   value={step}
                 />
               ))}
