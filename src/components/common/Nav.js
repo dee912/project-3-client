@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { getAllPl8s } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
-// import { m8Profile } from '../../lib/api'
+import { m8Profile } from '../../lib/api'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 
 export default function Nav() {
@@ -11,7 +11,7 @@ export default function Nav() {
   const [searchValue, setSearchValue] = useState(null)
   const { m8Id } = getPayload()
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated())
-
+  console.log(m8Id)
   const handleChange = (e) => {
     setSearchValue(e.target.value)
   }
