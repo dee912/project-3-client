@@ -33,3 +33,6 @@ export function m8Profile(m8Id) {
   return axios.get(`${baseUrl}/m8/${m8Id}`, headers())
 }
 
+export function getAllM8s() {
+  return axios.get(`${baseUrl}/m8s`)
+}
