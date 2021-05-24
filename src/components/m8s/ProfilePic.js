@@ -20,7 +20,6 @@ export default function ProfilePic({ username, avatar }) {
       <div className="card">
         <footer className="card-footer">
           <a href="#" className="card-footer-item">Edit</a>
-          <a href="#" className="card-footer-item">Delete</a>
         </footer>
       </div>
     </div>
