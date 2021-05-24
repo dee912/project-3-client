@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom'
-import { useState } from 'react'
-import { produce } from 'immer'
+import CreatableSelect from 'react-select/creatable'
 import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
 
@@ -10,26 +9,42 @@ export default function Cr8APl8() {
     name: '',
     origin: '',
     description: '',
+    ingredients: [],
+    recipe: [''],
     prepTime: 0,
     cookTime: 0,
     imgage: '',
   })
-  const [ingredients, setIngredients] = useState([''])
-  const [recipe, setRecipe] = useState([''])
+
+  const handleMultiSelectChange = (selected, name) => {
+    const selectedItems = selected ? selected.map(item => item.value) : []
+    handleChange({ target: { name, value: selectedItems } })
+  }
+
+  const handleAddRecipeStepInput = () => {
+    if (formdata.recipe[formdata.recipe.length - 1]) {
+      handleChange({ target: { name: 'recipe', value: [...formdata.recipe, ''] } })
+    }
+  }
+
+  const handleAddRecipeStep = (event, i) => {
+    const newArray = [...formdata.recipe]
+    newArray[i] = event.target.value
+    //handleChange({ target: { name: 'recipe', value: newArray } })
+    console.log(newArray)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      const { data } = await cr8APl8(formdata, ingredients, recipe)
+      const { data } = await cr8APl8(formdata)
       history.push(`/pl8s/${data._id}`)
     } catch (err) {
       setFormErrors(err.response.data.errors)
       console.log(err)
     }
   }
-
-  console.log(ingredients)
 
   return (
     <section className="section">
@@ -79,32 +94,57 @@ export default function Cr8APl8() {
                 {formErrors.description && <p className="help is-danger">{formErrors.description}</p>}
               </div>
             </div>
-            <label className="label">Ingredient</label>
-            {ingredients ? 
-              ingredients.map((ingredient, i) => (
-                <div className="field" key={i}>
-                  <div className="control">
-                    <input
-                      className={`input ${formErrors.description ? 'is-danger' : ''}`}
-                      placeholder={`Ingredient ${i + 1}`}
-                      name="ingredient"
-                      onChange={event => {
-                        const newIngredient = event.target.value
-                        setIngredients((currentIngredients) => {
-                          produce(currentIngredients, (value) => {
-                            console.log(value)
-                            value[i] = newIngredient
-                          })
-                        })
-                      }}
-                      value={ingredient}
-                    />
-                  </div>
-                </div>
-              ))
-              :
-              console.log(ingredients)
-            }
+            <div className="field">
+              <label className="label">Ingredients</label>
+              <CreatableSelect 
+                isMulti
+                name="ingredients"
+                onChange={selected => 
+                  handleMultiSelectChange(selected, 'ingredients')
+                }
+                value={formdata.ingredients.map(ingredient => ({ label: ingredient[0].toUpperCase() + ingredient.substring(1), value: ingredient }))}
+              />
+            </div>
+            <div className="field">
+              <label className="label">Recipe</label>
+              {formdata.recipe.map((step, i) => (
+                <input
+                  key={step}
+                  className={'input'}
+                  placeholder="Add step"
+                  name="recipe"
+                  onChange={(event) => handleAddRecipeStep(event, i)}
+                  value={step}
+                />
+              ))}
+              <button className="button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
+            </div>
+            <div className="field">
+              <label className="label">Prep Time (minutes)</label>
+              <div className="control">
+                <input
+                  type="number"
+                  name="prepTime"
+                  min={0}
+                  onChange={handleChange}
+                  value={formdata.prepTime}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Cook Time (minutes)</label>
+              <div className="control">
+                <input
+                  type="number"
+                  name="cookTime"
+                  min={0}
+                  onChange={handleChange}
+                  value={formdata.cookTime}
+                />
+              </div>
+            </div>
+            
+            <button className="button is-fullwidth" onClick={handleSubmit}>Submit</button>
           </form>
         </div>
       </div>
