@@ -26,9 +26,7 @@ export default function ProfileM8s({ formdata }) {
         <p className="title is-4">{formdata.username}&apos;s m8s</p>
       </div>
       <br/>
-
       <div className="containerScroll">
-
         {m8 && (
           m8.map(m8 => (
             <div key={m8._id} className="cardScroll">
@@ -36,7 +34,7 @@ export default function ProfileM8s({ formdata }) {
                 <p className="title is-4">{m8.username}</p>
                 {
                   m8.avatar ? 
-                    <img src={m8.avatar} alt={m8.username}/> 
+                    <img className="friends" src={m8.avatar} alt={m8.username}/> 
                     : 
                     <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="default pic" />
                 }
@@ -48,3 +46,4 @@ export default function ProfileM8s({ formdata }) {
     </section>
   )
 }
+  
