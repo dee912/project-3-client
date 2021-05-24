@@ -13,7 +13,12 @@ export default function ProfilePic({ username, avatar }) {
             </div>
           </div>
           <figure className="image is-4by3">
-            <img src={avatar} alt={username}/>
+            {
+              avatar ? 
+                <img src={avatar} alt={username}/> 
+                : 
+                <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="defualt picture"/>
+            }
           </figure>
         </div>
       </div>
