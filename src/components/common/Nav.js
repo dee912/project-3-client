@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { getAllPl8s } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
-import { m8Profile } from '../../lib/api'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 
 export default function Nav() {
@@ -37,13 +36,12 @@ export default function Nav() {
   }
   console.log(isLoggedIn)
 
-
   useEffect(() => {
     setIsLoggedIn(isAuthenticated)
   }, [location.pathname])
 
   return (
-    <nav className="navbar is-dark is-fullwidth">
+    <nav className="navbar is-white is-fullwidth">
       <div className="container">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
@@ -57,7 +55,7 @@ export default function Nav() {
           </Link>
           {isLoggedIn &&
             <>
-              <Link to="/m8s" className="navbar-item">
+              <Link to={`/m8/${m8Id}`} className="navbar-item">
                 M8S
               </Link>
               <Link to="/pl8s/cr8" className="navbar-item">

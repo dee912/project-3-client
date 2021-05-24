@@ -1,6 +1,9 @@
 import React from 'react'
 
 export default function Home() {
+  React.useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight)
+  }, [])
   const [grow, setGrow] = React.useState(false)
   const [clicks, setClicks] = React.useState(0)
   const handleClick = () => {
@@ -10,7 +13,7 @@ export default function Home() {
   return (
     <div className='background'>
       <div className='home'>
-        <h1>R8 MY PL8 M8</h1>
+        <h1 className='noSelect'>R8 MY PL8 M8</h1>
         <svg width="100" height="100" fill='none' stroke='black' xmlns="http://www.w3.org/2000/svg" onClick={handleClick} onTransitionEnd={() => setGrow(false)} className={`plate ${grow ? 'grow' : ''} ${clicks >= 8 ? 'exploded' : ''}`}>
           <g className='topLeft'>
             <path d="M 50 0 A 50 50 0 0 0 0 50" />

@@ -1,4 +1,10 @@
-export default function ProfilePic({ username, avatar }) {
+import { isOwner } from '../../lib/auth'
+
+
+export default function ProfilePic({ _id, username, avatar, setEdit, edit, formdata, handleInput }) {
+  const handleEdit = () => {
+    setEdit(true)
+  }
   return (
     <div className="column is-5 is-offset-0">
       <div className="card">
@@ -8,7 +14,8 @@ export default function ProfilePic({ username, avatar }) {
               <div className="media-left">
               </div>
               <div className="media-content">
-                <p className="title is-4">{username}</p>
+                {!edit && <p className="title is-4">{username}</p>}
+                {edit && <input className='title is-4' id='username' value={formdata.username} onChange={handleInput}/>}
               </div>
             </div>
           </div>
@@ -19,8 +26,8 @@ export default function ProfilePic({ username, avatar }) {
       </div>
       <div className="card">
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">Edit</a>
-          <a href="#" className="card-footer-item">Delete</a>
+          {isOwner(_id) && !edit && <button onClick={handleEdit}className="card-footer-item">Edit</button>}
+          {edit && <button className='card-footer-item' onClick={() => setEdit(false)}>Save Changes</button>}
         </footer>
       </div>
     </div>
