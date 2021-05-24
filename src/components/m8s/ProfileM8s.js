@@ -1,7 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-
-import ProfileM8sCard from './ProfileM8sCard'
+import { Link, useParams } from 'react-router-dom'
 import { getAllM8s } from '../../lib/api'
 
 export default function ProfileM8s({ username }) {
@@ -21,7 +19,7 @@ export default function ProfileM8s({ username }) {
   }, [m8Id])
 
   return (
-    <div>
+    <section>
       <div className="media-content">
         <p className="title is-4">{username}&apos;s m8s</p>
       </div>
@@ -29,17 +27,32 @@ export default function ProfileM8s({ username }) {
 
       {m8 && (
         m8.map(m8 => (
-          <div className="columns" key={m8._id}>
-            <div className="column is-4 is-offset-0">
-              <div className="card">
-                <div className="card-image">
-                  <ProfileM8sCard  {...m8} />
+          <div className="friends" key={m8._id}>
+            <Link to={`/m8/${m8._id}`} >
+              <div className="columns" >
+                <div className="column is-4 is-offset-0">
+                  <div className="card">
+                    <div className="card-image">
+                      <div className="card-content">
+                        <div className="media">
+                          <div className="media-left">
+                          </div>
+                          <div className="media-content">
+                            <p className="title is-4">{m8.username}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <figure className="image is-4by3">
+                        <img src={m8.avatar} alt={m8.username}/>
+                      </figure>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))
       )}
-    </div>
+    </section>
   )
 }
