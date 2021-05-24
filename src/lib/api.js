@@ -33,3 +33,6 @@ export function m8Profile(m8Id) {
   return axios.get(`${baseUrl}/m8/${m8Id}`, headers())
 }
 
+export function editM8(m8Id, formdata) {
+  return axios.put(`${baseUrl}/m8/${m8Id}`, formdata, headers())
+}

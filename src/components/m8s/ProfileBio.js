@@ -1,8 +1,8 @@
-export default function ProfileBio({ username, highScore,formdata, edit, handleChange }) {
+export default function ProfileBio({ highScore,formdata, edit, handleChange }) {
   return (
     <div>
       <div className="media-content">
-        <p className="title is-4">{username}&apos;s bio</p>
+        <p className="title is-4">{formdata.username}&apos;s bio</p>
       </div>
       <br/>
       <div className="media-content">

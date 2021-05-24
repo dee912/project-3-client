@@ -1,7 +1,7 @@
 import { isOwner } from '../../lib/auth'
 
 
-export default function ProfilePic({ _id, username, avatar, setEdit, edit, formdata, handleChange, handleSave }) {
+export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave }) {
   const handleEdit = () => {
     setEdit(true)
   }
@@ -14,13 +14,13 @@ export default function ProfilePic({ _id, username, avatar, setEdit, edit, formd
               <div className="media-left">
               </div>
               <div className="media-content">
-                {!edit && <p className="title is-4">{username}</p>}
+                {!edit && <p className="title is-4">{formdata.username}</p>}
                 {edit && <input className='title is-4' name='username' value={formdata.username} onChange={handleChange}/>}
               </div>
             </div>
           </div>
           <figure className="image is-4by3">
-            <img src={avatar} alt={username}/>
+            <img src={formdata.avatar} alt={formdata.username}/>
           </figure>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import useForm from '../../hooks/useForm'
-import { m8Profile } from '../../lib/api'
+import { editM8, m8Profile } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 import ProfileBio from './ProfileBio'
 import ProfileM8s from './ProfileM8s'
@@ -36,6 +36,12 @@ export default function M8Show() {
 
   const handleSave = async () => {
     setEdit(false)
+    try {
+      const response = await editM8(m8Id, formdata)
+      console.log('response', response)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -48,7 +54,7 @@ export default function M8Show() {
               <div className="column is-7 is-offset-0">
                 <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange}/>
                 <hr />
-                <ProfileM8s {...m8} />
+                <ProfileM8s formdata={formdata} />
               </div>
             </div>
             <hr />
