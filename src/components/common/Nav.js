@@ -53,6 +53,9 @@ export default function Nav() {
           <Link to="" onClick={randomPl8} className="navbar-item">
             Random PL8
           </Link>
+          <Link to="/game" className="navbar-item">
+            Game
+          </Link>
           {isLoggedIn &&
             <>
               <Link to={`/m8/${m8Id}`} className="navbar-item">

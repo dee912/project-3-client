@@ -8,6 +8,7 @@ import Register from './components/auth/Register'
 import Cr8APl8 from './components/pl8s/Cr8APl8'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Game from './components/game/Game'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/login" component={Login}/>
         <Route path="/become-a-m8" component={Register}/>
         <Route path="/m8/:id" component={Profile}/>
+        <Route path="/game" component={Game}/>
       </Switch>
     </Router>
   )

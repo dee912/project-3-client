@@ -1,3 +1,7 @@
+* {
+  box-sizing:b border-box;
+}
+
 .home {
   display: flex;
   width: 100%;
@@ -38,6 +42,34 @@
   }
 }
 
+.game {
+  width: 98vw;
+  height: 800px;
+  border: 3px solid black;
+  .projectile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid black;
+    .inner {
+      margin: 10px;
+      width: 76px;
+      height: 76px;
+      border: 1px solid black;
+      border-radius: 50%;
+    }
+    animation: 6s  infinite fall;
+  }
+}
+
+@keyframes fall {
+  0% {
+    margin-top: 0%;
+  }
+  100% {
+    margin-top: 50%
+  }
+}
 .friends {
   
 }
