@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 
 export default function Home() {
   React.useEffect(() => {
@@ -6,6 +7,7 @@ export default function Home() {
   }, [])
   const [grow, setGrow] = React.useState(false)
   const [clicks, setClicks] = React.useState(0)
+  const history = useHistory()
   const handleClick = () => {
     setGrow(true)
     setClicks(clicks + 1)
@@ -44,7 +46,7 @@ export default function Home() {
             <path className={clicks < 8 ? 'crack' : ''} d="M 50 0 L 40  20 L 55 30 L 50 35 L 50 50" />
           </g>
         </svg>
-        {clicks >= 8 && <button>View Pl8s</button>}
+        {clicks >= 8 && <button className='toPl8s' onClick={() => history.push('/pl8s')}>View Pl8s 🍽</button>}
       </div>
     </div>
   )

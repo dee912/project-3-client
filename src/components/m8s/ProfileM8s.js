@@ -1,10 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import ScrollMenu from 'react-horizontal-scrolling-menu'
 
 import { getAllM8s } from '../../lib/api'
-import { useSpring } from '@react-spring/core'
-
 export default function ProfileM8s({ formdata }) {
   const { m8Id } = useParams()
   const [m8, setM8] = React.useState(null)
@@ -35,7 +32,6 @@ export default function ProfileM8s({ formdata }) {
         {m8 && (
           m8.map(m8 => (
             <div key={m8._id} className="cardScroll">
-
               <Link to={`/m8/${m8._id}` } >
                 <p className="title is-4">{m8.username}</p>
                 {
