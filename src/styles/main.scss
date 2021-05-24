@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 * {
   box-sizing:b border-box;
 }
 
-=======
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 .background {
@@ -11,7 +9,6 @@
   height: 100vh;
   background-color: rgb(2, 121, 247);
 }
->>>>>>> development
 .home {
   display: flex;
   width: 100%;
@@ -83,7 +80,6 @@
   }
 }
 
-<<<<<<< HEAD
 .game {
   width: 98vw;
   height: 800px;
@@ -112,15 +108,10 @@
     margin-top: 50%
   }
 }
-.friends {
-=======
+
 textarea {
   width: 100%;
   min-height: 100px;
-}
-.friend {
->>>>>>> development
-  
 }
 
 @import '~bulma/bulma.sass';
