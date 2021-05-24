@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .background {
   width: 100%;
   height: 100vh;
@@ -19,6 +21,8 @@
     -ms-user-select: none;
     user-select: none;
     font-size: 100px;
+    font-family: 'Righteous', cursive;
+    color: whitesmoke;
 }
   .plate{
     cursor: pointer;
@@ -54,7 +58,21 @@
   button {
     position: absolute;
     bottom: 10%;
-
+    font-size: 40px;
+    cursor: pointer;
+    color: whitesmoke;
+    border: none;
+    background: none;
+  }
+}
+.navbarPlate {
+  transform: scale(0.4);
+  overflow: visible;
+  .topLeft, .topRight, .bottomLeft, .bottomRight {
+    transform: translate(-25px, -25px) rotate(0deg);
+    .noCracks {
+      display: none;
+    }
   }
 }
 
