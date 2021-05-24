@@ -25,11 +25,12 @@ export default function ProfileM8s({ formdata }) {
       </div>
       <br/>
 
-      {m8 && (
-        m8.map(m8 => (
-          <div className="friends" key={m8._id}>
-            <Link to={`/m8/${m8._id}`} >
-              <div className="columns" >
+      <div className="columns" >
+        {m8 && (
+        
+          m8.map(m8 => (
+            <div className="friends" key={m8._id}>
+              <Link to={`/m8/${m8._id}`} >
                 <div className="column is-4 is-offset-0">
                   <div className="card">
                     <div className="card-image">
@@ -48,11 +49,11 @@ export default function ProfileM8s({ formdata }) {
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))
-      )}
+              </Link>
+            </div>
+          ))
+        )}
+      </div>
     </section>
   )
 }

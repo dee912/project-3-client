@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/pl8s" component={PL8Index}/>
         <Route path="/login" component={Login}/>
         <Route path="/become-a-m8" component={Register}/>
-        <Route path="/m8/:id" component={Profile}/>
+        <Route path="/m8/:m8id" component={Profile}/>
       </Switch>
     </Router>
   )
