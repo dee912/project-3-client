@@ -28,7 +28,17 @@ export default function ProfileM8s({ username }) {
       <br/>
 
       {m8 && (
-        m8.map(m8 => <ProfileM8sCard key={m8._id} {...m8} />)
+        m8.map(m8 => (
+          <div className="columns" key={m8._id}>
+            <div className="column is-4 is-offset-0">
+              <div className="card">
+                <div className="card-image">
+                  <ProfileM8sCard  {...m8} />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
       )}
     </div>
   )
