@@ -12,7 +12,7 @@ export default function M8Show() {
   const { m8Id } = getPayload()
   const [m8, setM8] = useState(null)
   const [edit, setEdit] = useState(false)
-  const { formdata, setFormdata } = useForm({
+  const { formdata, setFormdata, handleChange } = useForm({
     username: '',
     avatar: '',
     highscore: '',
@@ -34,8 +34,8 @@ export default function M8Show() {
     getData()
   }, [m8Id, setFormdata])
 
-  const handleInput = (e) => {
-    setFormdata({ ...formdata, [e.target.id]: e.target.value })
+  const handleSave = async () => {
+    setEdit(false)
   }
 
   return (
@@ -44,9 +44,9 @@ export default function M8Show() {
         <div className="section">
           <div className="container">
             <div className="columns">
-              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleInput={handleInput} formdata={formdata}/>
+              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave}/>
               <div className="column is-7 is-offset-0">
-                <ProfileBio {...m8} edit={edit} formdata={formdata} handleInput={handleInput}/>
+                <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange}/>
                 <hr />
                 <ProfileM8s {...m8} />
               </div>

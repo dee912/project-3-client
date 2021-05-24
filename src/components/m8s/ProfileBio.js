@@ -1,4 +1,4 @@
-export default function ProfileBio({ username, highScore,formdata, edit, handleInput }) {
+export default function ProfileBio({ username, highScore,formdata, edit, handleChange }) {
   return (
     <div>
       <div className="media-content">
@@ -7,7 +7,7 @@ export default function ProfileBio({ username, highScore,formdata, edit, handleI
       <br/>
       <div className="media-content">
         {!edit && <p className="title is-6">{!formdata.bio ? 'Add a description about yourself' : formdata.bio }</p>}
-        {edit && <textarea className='title is-6' id='bio' value={formdata.bio} onChange={handleInput}/>}
+        {edit && <textarea className='title is-6' name='bio' value={formdata.bio} onChange={handleChange}/>}
       </div>
       <hr/>
       <div className="media-content">
