@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import ScrollMenu from 'react-horizontal-scrolling-menu'
+
 import { getAllM8s } from '../../lib/api'
+import { useSpring } from '@react-spring/core'
 
 export default function ProfileM8s({ formdata }) {
   const { m8Id } = useParams()
@@ -17,6 +20,8 @@ export default function ProfileM8s({ formdata }) {
     }
     getData()
   }, [m8Id])
+  console.log(m8)
+  
 
   return (
     <section>
@@ -25,30 +30,20 @@ export default function ProfileM8s({ formdata }) {
       </div>
       <br/>
 
-      <div className="columns" >
+      <div className="containerScroll">
+
         {m8 && (
-        
           m8.map(m8 => (
-            <div className="friends" key={m8._id}>
-              <Link to={`/m8/${m8._id}`} >
-                <div className="column is-4 is-offset-0">
-                  <div className="card">
-                    <div className="card-image">
-                      <div className="card-content">
-                        <div className="media">
-                          <div className="media-left">
-                          </div>
-                          <div className="media-content">
-                            <p className="title is-4">{m8.username}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <figure className="image is-4by3">
-                        <img src={m8.avatar} alt={m8.username}/>
-                      </figure>
-                    </div>
-                  </div>
-                </div>
+            <div key={m8._id} className="cardScroll">
+
+              <Link to={`/m8/${m8._id}` } >
+                <p className="title is-4">{m8.username}</p>
+                {
+                  m8.avatar ? 
+                    <img src={m8.avatar} alt={m8.username}/> 
+                    : 
+                    <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="default pic" />
+                }
               </Link>
             </div>
           ))

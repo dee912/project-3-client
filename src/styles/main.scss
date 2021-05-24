@@ -63,4 +63,22 @@ textarea {
   min-height: 100px;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.containerScroll {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.cardScroll {
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
 @import '~bulma/bulma.sass';

@@ -20,7 +20,10 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
             </div>
           </div>
           <figure className="image is-4by3">
-            <img src={formdata.avatar} alt={formdata.username}/>
+            {formdata.avatar ? 
+              <img src={formdata.avatar} alt={formdata.username}/> 
+              :
+              <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt={formdata.username}/>}
           </figure>
         </div>
       </div>
