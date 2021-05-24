@@ -5,7 +5,7 @@ function useForm(initialState) {
   const [formErrors, setFormErrors] = React.useState(initialState)
   console.log(formdata)
   const handleChange = event => {
-    console.log(event.target.value)
+    console.log(event.target)
     setFormdata({ ...formdata, [event.target.name]: event.target.value })
     setFormErrors({ ...formErrors, [event.target.name]: '' })
   }
