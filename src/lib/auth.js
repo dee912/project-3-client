@@ -33,3 +33,9 @@ export function isAuthenticated() {
   const now = Math.round(Date.now() / 1000)
   return now < payload.exp
 }
+
+export function isOwner(m8Id) {
+  const payload = getPayload()
+  if (!payload || !isAuthenticated) return false
+  return payload.m8Id === m8Id
+}

@@ -1,7 +1,17 @@
+<<<<<<< HEAD
 * {
   box-sizing:b border-box;
 }
 
+=======
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.background {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(2, 121, 247);
+}
+>>>>>>> development
 .home {
   display: flex;
   width: 100%;
@@ -9,11 +19,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-
+  .noSelect {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 100px;
+    font-family: 'Righteous', cursive;
+    color: whitesmoke;
+}
   .plate{
     cursor: pointer;
     transition: transform 50ms ease-in-out;
     overflow: visible;
+    transform: scale(2);
     .topLeft, .topRight, .bottomLeft, .bottomRight {
       transition: transform 1s;
       transform-origin: center;
@@ -40,8 +62,28 @@
       transform: translate(6vw, 10vh) rotate(120deg);
     }
   }
+  button {
+    position: absolute;
+    bottom: 10%;
+    font-size: 40px;
+    cursor: pointer;
+    color: whitesmoke;
+    border: none;
+    background: none;
+  }
+}
+.navbarPlate {
+  transform: scale(0.4);
+  overflow: visible;
+  .topLeft, .topRight, .bottomLeft, .bottomRight {
+    transform: translate(-25px, -25px) rotate(0deg);
+    .noCracks {
+      display: none;
+    }
+  }
 }
 
+<<<<<<< HEAD
 .game {
   width: 98vw;
   height: 800px;
@@ -71,6 +113,13 @@
   }
 }
 .friends {
+=======
+textarea {
+  width: 100%;
+  min-height: 100px;
+}
+.friend {
+>>>>>>> development
   
 }
 

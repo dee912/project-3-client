@@ -3,14 +3,16 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { getAllPl8s } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 import { isAuthenticated, removeToken } from '../../lib/auth'
+import PlateForNav from './PlateForNav'
 
 export default function Nav() {
+  const [visibleCracks, setVisibleCracks] = useState(false)
   const history = useHistory()
   const location = useLocation()
   const [searchValue, setSearchValue] = useState(null)
   const { m8Id } = getPayload()
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated())
-
+  console.log(m8Id)
   const handleChange = (e) => {
     setSearchValue(e.target.value)
   }
@@ -44,8 +46,8 @@ export default function Nav() {
     <nav className="navbar is-white is-fullwidth">
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
-            Home
+          <Link to="/" className="navbar-item" onMouseEnter={() => setVisibleCracks(true)} onMouseLeave={() => setVisibleCracks(false)}>
+            <PlateForNav visibleCracks={visibleCracks}/>
           </Link>
           <Link to="/pl8s" className="navbar-item">
             PL8S

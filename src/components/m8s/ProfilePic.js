@@ -1,4 +1,10 @@
-export default function ProfilePic({ username, avatar }) {
+import { isOwner } from '../../lib/auth'
+
+
+export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave }) {
+  const handleEdit = () => {
+    setEdit(true)
+  }
   return (
     <div className="column is-5 is-offset-0">
       <div className="card">
@@ -8,23 +14,20 @@ export default function ProfilePic({ username, avatar }) {
               <div className="media-left">
               </div>
               <div className="media-content">
-                <p className="title is-4">{username}</p>
+                {!edit && <p className="title is-4">{formdata.username}</p>}
+                {edit && <input className='title is-4' name='username' value={formdata.username} onChange={handleChange}/>}
               </div>
             </div>
           </div>
           <figure className="image is-4by3">
-            {
-              avatar ? 
-                <img src={avatar} alt={username}/> 
-                : 
-                <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="defualt picture"/>
-            }
+            <img src={formdata.avatar} alt={formdata.username}/>
           </figure>
         </div>
       </div>
       <div className="card">
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">Edit</a>
+          {isOwner(_id) && !edit && <button onClick={handleEdit}className="card-footer-item">Edit</button>}
+          {edit && <button className='card-footer-item' onClick={handleSave}>Save Changes</button>}
         </footer>
       </div>
     </div>
