@@ -60,6 +60,7 @@
     }
   }
   button {
+    animation: fadeIn 5s;
     position: absolute;
     bottom: 10%;
     font-size: 40px;
@@ -69,6 +70,11 @@
     background: none;
   }
 }
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
 .navbarPlate {
   transform: scale(0.4);
   overflow: visible;
