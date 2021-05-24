@@ -27,9 +27,13 @@ export default function Nav() {
   }
 
   const randomPl8 = async () => {
-    const { data } = await getAllPl8s()
-    const r = Math.floor(Math.random() * data.length)
-    history.push(`/pl8s/${data[r]._id}`)
+    try {
+      const { data } = await getAllPl8s()
+      const r = Math.floor(Math.random() * data.length)
+      history.push(`/pl8s/${data[r]._id}`)
+    } catch (err) {
+      console.log(err)
+    }
   }
   console.log(isLoggedIn)
 

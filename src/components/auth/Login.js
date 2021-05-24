@@ -17,8 +17,8 @@ export default function Login() {
     console.log(formdata)
 
     try {
-      const res = await loginM8(formdata)
-      setToken(res.data.token)
+      const { data } = await loginM8(formdata)
+      setToken(data.token)
       history.push('/pl8s')
     } catch (err) {
       setIsError(true)

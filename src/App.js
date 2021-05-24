@@ -15,8 +15,8 @@ export default function App() {
       <Nav />
       <Switch>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/pl8s/cr8" component={Cr8APl8}/>
         <Route path="/pl8s/:pl8Id" component={PL8Show}/>
-        <Route path="/pl8s/cr8" component={Cr8APl8}/>
         <Route path="/pl8s" component={PL8Index}/>
         <Route path="/login" component={Login}/>
         <Route path="/become-a-m8" component={Register}/>
