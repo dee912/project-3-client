@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { m8Profile } from '../../lib/api'
 
-export default function Pl8Comment({ comment, index, showPage }) {
+export default function Pl8Comment({ comment, index, showPage, pl8Id }) {
   const [m8, setM8] = React.useState(null)
   React.useEffect(() => {
     const getData = async () => {
@@ -25,7 +25,7 @@ export default function Pl8Comment({ comment, index, showPage }) {
           <p>{comment.text}</p>
         </div>
       }
-      {index === 2 && <p>View all comments</p>}
+      {index === 3 && <Link to={`/pl8/${pl8Id}/comments`}>View all comments</Link>}
     </div>
   )
 }

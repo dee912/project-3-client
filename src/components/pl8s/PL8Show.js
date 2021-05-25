@@ -7,13 +7,12 @@ import Pl8Comment from './Pl8Comment'
 export default function PL8Show() {
   const { pl8Id } = useParams()
   const [pl8, setPl8] = useState(null)
-  console.log(pl8Id)
+  const [commentToAdd, setCommentToAdd] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getSinglePl8(pl8Id)
-        console.log('This data', data)
         setPl8(data)
       } catch (err) {
         console.log(err)
@@ -21,6 +20,11 @@ export default function PL8Show() {
     }
     getData()
   }, [pl8Id])
+
+  const addComment = () => {
+    setCommentToAdd(true)
+  }
+
   return (
     <div className="container">
       {pl8 && (
@@ -55,16 +59,25 @@ export default function PL8Show() {
             </ol>
           </div>
           <div className="column is-quarter">
-            <img className='showImage' src={pl8.image} alt={pl8.name}/>
+            <img className='showImage' src={pl8.image} alt={pl8.name} />
             <br />
-            <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button>Add Comment</button>}</h3>
+            <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={addComment}>Add Comment</button>}</h3>
             <hr />
-            {pl8.comments.map((comment,index) => (
-              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true}/></div>
+            {pl8.comments.map((comment, index) => (
+              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true} pl8Id={pl8Id} /></div>
             ))}
           </div>
         </div>
       )}
+      {commentToAdd &&
+        <div className='commentPopUp'>
+          <h1>Add a Comment</h1>
+          <textarea />
+          <div className='buttons'>
+            <button>cancel</button>
+            <button>addComment</button>
+          </div>
+        </div>}
     </div>
   )
 }
