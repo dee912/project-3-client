@@ -29,7 +29,7 @@ export default function PL8Show() {
       } else {
         console.log(oldR8ing._id)
         const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
-        setPl8({...data})
+        setPl8({ ...data })
       }
       calculateMeanR8ing(pl8.r8ings)
     }
@@ -57,6 +57,9 @@ export default function PL8Show() {
     }
     getData()
   }, [pl8Id])
+
+  console.log(m8Id)
+  
   return (
     <div className="container">
       {pl8 && (
@@ -81,6 +84,7 @@ export default function PL8Show() {
                 >{option}</option>
               ))}
             </select>
+            <hr />
             <h3 className="title is-3">Origin:</h3>
             <p>{pl8.origin}</p>
             <hr />
@@ -92,11 +96,15 @@ export default function PL8Show() {
               ))}
             </ul>
             <hr />
-            <ol><h3 className="title is-3">Ingredients:</h3>
+            <ol><h3 className="title is-3">Recipe:</h3>
               {pl8.recipe.map(step => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
+            <hr />
+            <h3 className="title is-3">Owner:</h3>
+            <p>{pl8.m8}</p>
+            <hr />
           </div>
           <div className="column is-quarter">
             <img className='showImage' src={pl8.image} alt={pl8.name}/>
