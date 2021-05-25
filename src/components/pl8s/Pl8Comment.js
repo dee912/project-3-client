@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { m8Profile } from '../../lib/api'
+import { deleteComment, editComment, m8Profile } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 
-export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, setUpdating }) {
+export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, setUpdating, setDeleted }) {
   const [m8, setM8] = React.useState(null)
   const [commentToEdit, setCommentToEdit] = React.useState(false)
   const [editedComment, setEditedComment] = React.useState(comment.text)
@@ -30,6 +30,27 @@ export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, 
     setCommentToEdit(false)
   }
 
+  const submitEdit = async () => {
+    try {
+      const { data } = await editComment(pl8Id, { text: editedComment }, comment._id)
+      setEditedComment(data.text)
+      comment.text = data.text
+      endUpdating()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const submitDelete = async () => {
+    try {
+      await deleteComment(pl8Id, comment._id)
+      setDeleted(true)
+      endUpdating()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       {showPage && index < 2 && m8 &&
@@ -48,13 +69,13 @@ export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, 
         <div className='commentPopUp'>
           <h1>Edit the Comment</h1>
           <div className='enterText'>
-            <textarea value={editedComment}/>
+            <textarea value={editedComment} onChange={(e) => setEditedComment(e.target.value)} />
             <p>Reamaining Characters: </p>
           </div>
           <div className='buttons'>
             <button onClick={endUpdating}>Cancel</button>
-            <button>Update</button>
-            <button>Delete</button>
+            <button onClick={submitEdit}>Update</button>
+            <button onClick={submitDelete}>Delete</button>
           </div>
         </div>}
     </div>

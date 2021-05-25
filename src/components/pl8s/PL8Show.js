@@ -8,7 +8,6 @@ const r8ingOptions = []
 for (let i = 0; i < 9; i++) {
   r8ingOptions.push(i)
 }
-console.log(r8ingOptions)
 import { isAuthenticated } from '../../lib/auth'
 import Pl8Comment from './Pl8Comment'
 
@@ -20,6 +19,7 @@ export default function PL8Show() {
   const [meanR8ing, setMeanR8ing] = useState(0)
   const [writtenComment, setWrittenComment] = useState('')
   const [updating, setUpdating] = useState(false)
+  const [deleted, setDeleted] = useState(false)
 
   const handleR8ing = (event) => {
 
@@ -43,7 +43,6 @@ export default function PL8Show() {
     const mean = r8ings.reduce((acc, r8ing) => {
       return acc + r8ing.r8ing
     }, 0) / r8ings.length
-    console.log(mean)
     setMeanR8ing(mean)
   }
 
@@ -52,6 +51,8 @@ export default function PL8Show() {
     const getData = async () => {
       try {
         const { data } = await getSinglePl8(pl8Id)
+        console.log(data)
+        setDeleted(false)
         setPl8(data)
         calculateMeanR8ing(data.r8ings)
       } catch (err) {
@@ -59,7 +60,7 @@ export default function PL8Show() {
       }
     }
     getData()
-  }, [pl8Id])
+  }, [pl8Id, deleted])
 
   const handleInput = (e) => {
     setWrittenComment(e.target.value)
@@ -132,7 +133,7 @@ export default function PL8Show() {
             </ol>
             <hr />
             <h3 className="title is-3">Owner:</h3>
-            <p>{pl8.m8}</p>
+            <p>{pl8.m8.username}</p>
             <hr />
           </div>
           <div className="column is-quarter">
@@ -141,7 +142,7 @@ export default function PL8Show() {
             <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
             <hr />
             {pl8.comments.map((comment, index) => (
-              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true} pl8Id={pl8Id} updating={updating} setUpdating={setUpdating}/></div>
+              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true} pl8Id={pl8Id} updating={updating} setUpdating={setUpdating} setDeleted={setDeleted}/></div>
             ))}
           </div>
         </div>
