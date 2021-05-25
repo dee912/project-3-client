@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid'
 import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
 import { useState } from 'react'
+import ImageUpload from '../ImageUpload'
 
 export default function Cr8APl8() {
   const history = useHistory
@@ -40,9 +41,14 @@ export default function Cr8APl8() {
     console.log(newArray)
     handleChange({ target: { name: 'recipe', value: newArray } })
   }
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'image', value: file } })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    
     try {
       const { data } = await cr8APl8(formdata)
       history.push(`/pl8s/${data._id}`)
@@ -51,6 +57,7 @@ export default function Cr8APl8() {
       setFormErrors(err.response.data.errors)
       console.log(err)
     }
+    window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
   }
 
   return (
@@ -150,7 +157,9 @@ export default function Cr8APl8() {
                 />
               </div>
             </div>
-            
+            <div className="field">
+              <ImageUpload onUpload={handleImageUpload} />
+            </div>
             <button className="button is-fullwidth" onClick={handleSubmit}>Submit</button>
           </form>
         </div>
