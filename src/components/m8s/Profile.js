@@ -41,6 +41,7 @@ export default function M8Show() {
       console.log('response', response)
     } catch (error) {
       console.log(error)
+      setFormdata({ ...m8 })
     }
   }
 
