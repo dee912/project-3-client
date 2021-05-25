@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
 import { getAllM8s } from '../../lib/api'
+
 export default function ProfileM8s({ formdata }) {
   const { m8Id } = useParams()
   const [m8, setM8] = React.useState(null)
@@ -18,11 +20,10 @@ export default function ProfileM8s({ formdata }) {
     getData()
   }, [m8Id])
   console.log(m8)
-  
 
+  
   return (
     <section>
-      
       <div className="media-content">
         <p className="title is-4">{formdata.username}&apos;s m8s</p>
       </div>
@@ -42,12 +43,9 @@ export default function ProfileM8s({ formdata }) {
                   }
                 </Link>
               </div>
-              
             </div>
           ))
-          
         )}
-        
       </div>
     </section>
   )
