@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getSinglePl8 } from '../../lib/api'
+import { isAuthenticated } from '../../lib/auth'
+import Pl8Comment from './Pl8Comment'
 
 export default function PL8Show() {
   const { pl8Id } = useParams()
@@ -11,7 +13,7 @@ export default function PL8Show() {
     const getData = async () => {
       try {
         const { data } = await getSinglePl8(pl8Id)
-        console.log(data)
+        console.log('This data', data)
         setPl8(data)
       } catch (err) {
         console.log(err)
@@ -19,7 +21,6 @@ export default function PL8Show() {
     }
     getData()
   }, [pl8Id])
-
   return (
     <div className="container">
       {pl8 && (
@@ -53,8 +54,14 @@ export default function PL8Show() {
               ))}
             </ol>
           </div>
-          <div className="column is-half">
-            <img src={pl8.image} alt={pl8.name}/>
+          <div className="column is-quarter">
+            <img className='showImage' src={pl8.image} alt={pl8.name}/>
+            <br />
+            <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button>Add Comment</button>}</h3>
+            <hr />
+            {pl8.comments.map((comment,index) => (
+              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true}/></div>
+            ))}
           </div>
         </div>
       )}

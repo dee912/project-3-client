@@ -15,7 +15,7 @@ export default function Cr8APl8() {
     recipe: [''],
     prepTime: 0,
     cookTime: 0,
-    imgage: '',
+    image: '',
   })
   const [ids, setIds] = useState([nanoid()])
 
@@ -47,6 +47,7 @@ export default function Cr8APl8() {
       const { data } = await cr8APl8(formdata)
       history.push(`/pl8s/${data._id}`)
     } catch (err) {
+      console.log(err)
       setFormErrors(err.response.data.errors)
       console.log(err)
     }

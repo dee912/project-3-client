@@ -176,4 +176,35 @@ textarea {
   border-radius: 5px;
 }
 
+.showImage {
+  max-height: 500px;
+}
+.commentLayout {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  border: 1px solid black;
+  .commentImage{
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 50%;
+    margin: 0 10px;
+    width: 10%;
+    img {
+      border-radius: 50%;
+      height: 100%;
+    }
+  }
+  p {
+    border-left: 2px solid black;
+    height: 100%;
+    padding-left: 10px;
+  }
+}
+
+.commentTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @import '~bulma/bulma.sass';
