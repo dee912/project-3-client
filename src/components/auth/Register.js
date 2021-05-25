@@ -2,6 +2,7 @@ import React from 'react'
 import useForm from '../../hooks/useForm'
 import { registerM8 } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
+import ImageUpload from '../ImageUpload'
 
 export default function Register() {
   const history = useHistory()
@@ -10,7 +11,13 @@ export default function Register() {
     email: '',
     password: '',
     passwordConfirmation: '',
+    avatar: '',
   })
+  
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'avatar', value: file } })
+  }
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -92,6 +99,9 @@ export default function Register() {
               {formErrors.passwordConfirmation && (
                 <p className="help is-danger">{formErrors.passwordConfirmation}</p>
               )}
+            </div>
+            <div className="field">
+              <ImageUpload onUpload={handleImageUpload} />
             </div>
             <div className="field">
               <button type="submit" className="button is-fullwidth is-warning">

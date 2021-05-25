@@ -23,10 +23,8 @@ export default function M8Show() {
     const getData = async () => {
       try {
         const { data } = await m8Profile(m8Id)
-        console.log(data)
         setM8(data)
         setFormdata(data)
-        console.log('mata', data._id)
       } catch (err) {
         console.log(err)
       }
@@ -37,10 +35,10 @@ export default function M8Show() {
   const handleSave = async () => {
     setEdit(false)
     try {
-      const response = await editM8(m8Id, formdata)
-      console.log('response', response)
+      await editM8(m8Id, formdata)
     } catch (error) {
       console.log(error)
+      setFormdata({ ...m8 })
     }
   }
 

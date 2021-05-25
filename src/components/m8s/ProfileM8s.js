@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
 import { getAllM8s } from '../../lib/api'
+
 export default function ProfileM8s({ formdata }) {
   const { m8Id } = useParams()
   const [m8, setM8] = React.useState(null)
@@ -17,9 +19,8 @@ export default function ProfileM8s({ formdata }) {
     }
     getData()
   }, [m8Id])
-  console.log(m8)
-  
 
+  
   return (
     <section>
       <div className="media-content">
@@ -29,16 +30,18 @@ export default function ProfileM8s({ formdata }) {
       <div className="containerScroll">
         {m8 && (
           m8.map(m8 => (
-            <div key={m8._id} className="cardScroll">
-              <Link to={`/m8/${m8._id}` } >
-                <p className="title is-4">{m8.username}</p>
-                {
-                  m8.avatar ? 
-                    <img className="friends" src={m8.avatar} alt={m8.username}/> 
-                    : 
-                    <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="default pic" />
-                }
-              </Link>
+            <div key={m8._id} >
+              <div  className="cardScroll">
+                <Link to={`/m8/${m8._id}` } >
+                  <p className="title is-4">{m8.username}</p>
+                  {
+                    m8.avatar ? 
+                      <img className="friends" src={m8.avatar} alt={m8.username}/> 
+                      : 
+                      <img className="friends" src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt="default pic" />
+                  }
+                </Link>
+              </div>
             </div>
           ))
         )}

@@ -4,9 +4,10 @@ import { nanoid } from 'nanoid'
 import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
 import { useState } from 'react'
+import ImageUpload from '../ImageUpload'
 
 export default function Cr8APl8() {
-  const history = useHistory
+  const history = useHistory()
   const { formdata, formErrors, handleChange, setFormErrors } = useForm({
     name: '',
     origin: '',
@@ -15,7 +16,7 @@ export default function Cr8APl8() {
     recipe: [''],
     prepTime: 0,
     cookTime: 0,
-    imgage: '',
+    image: '',
   })
   const [ids, setIds] = useState([nanoid()])
 
@@ -32,22 +33,23 @@ export default function Cr8APl8() {
   }
 
   const handleChangeRecipeStep = (event, i) => {
-    console.log(event)
     const newArray = [...formdata.recipe]
     newArray[i] = event.target.value
-    console.log(newArray[i])
-    console.log(event.target.value)
-    console.log(newArray)
     handleChange({ target: { name: 'recipe', value: newArray } })
   }
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'image', value: file } })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    
     try {
       const { data } = await cr8APl8(formdata)
+      console.log(data._id)
       history.push(`/pl8s/${data._id}`)
     } catch (err) {
-      setFormErrors(err.response.data.errors)
       console.log(err)
     }
   }
@@ -78,7 +80,7 @@ export default function Cr8APl8() {
               <label className="label">Origin</label>
               <div className="control">
                 <input
-                  className={`input ${formErrors.origin ? 'is-danger' : ''}`}
+                  className={`input ${formErrors.name ? 'is-danger' : ''}`}
                   placeholder="Origin"
                   name="origin"
                   onChange={handleChange}
@@ -91,7 +93,7 @@ export default function Cr8APl8() {
               <label className="label">Description</label>
               <div className="control">
                 <input
-                  className={`input ${formErrors.description ? 'is-danger' : ''}`}
+                  className={`input ${formErrors.name ? 'is-danger' : ''}`}
                   placeholder="Description"
                   name="description"
                   onChange={handleChange}
@@ -149,7 +151,9 @@ export default function Cr8APl8() {
                 />
               </div>
             </div>
-            
+            <div className="field">
+              <ImageUpload onUpload={handleImageUpload} />
+            </div>
             <button className="button is-fullwidth" onClick={handleSubmit}>Submit</button>
           </form>
         </div>
