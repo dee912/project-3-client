@@ -19,7 +19,6 @@ export default function ProfileM8s({ formdata }) {
     }
     getData()
   }, [m8Id])
-  console.log(m8)
 
   
   return (

@@ -14,7 +14,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formdata)
 
     try {
       const { data } = await loginM8(formdata)
