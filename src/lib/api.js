@@ -39,3 +39,13 @@ export function editM8(m8Id, formdata) {
 export function getAllM8s() {
   return axios.get(`${baseUrl}/m8s`)
 }
+export function cr8R8ing(pl8Id, r8ing) {
+  return axios.post(`${baseUrl}/pl8s/${pl8Id}/r8ings`, r8ing, headers())
+} 
+export function upd8R8ing(pl8Id, r8ingId, r8ing) {
+  return axios.put(`${baseUrl}/pl8s/${pl8Id}/r8ings/${r8ingId}`, r8ing, headers())
+}
+
+export function addComment(pl8Id, comment) {
+  return axios.post(`${baseUrl}/pl8/${pl8Id}/comment`, comment, headers())
+}

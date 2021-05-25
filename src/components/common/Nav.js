@@ -35,7 +35,6 @@ export default function Nav() {
       console.log(err)
     }
   }
-
   useEffect(() => {
     setIsLoggedIn(isAuthenticated)
   }, [location.pathname])

@@ -168,14 +168,19 @@ textarea {
 }
 
 .cardScroll:hover {
+  
   transform: scale(1.02);
   box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, .1);
   transition: 0.3s;
 }
 
 .friends {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
   border-radius: 5px;
+  height: 20vh;
 }
 
 .showImage {
@@ -184,6 +189,7 @@ textarea {
 .commentLayout {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 10vh;
   border: 1px solid black;
   .commentImage{
@@ -198,9 +204,19 @@ textarea {
     }
   }
   p {
+    display: flex;
+    align-items: center;
     border-left: 2px solid black;
     height: 100%;
     padding-left: 10px;
+    width: 80%;
+  }
+  div {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
   }
 }
 
@@ -223,10 +239,31 @@ textarea {
   align-items: center;
   border-radius: 20px;
   h1 {
-    font-size: 30px;
+    font-size: 35px;
   }
-  textarea {
+  .enterText{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    textarea {
     width: 80%;
+    height: 70%;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 5px;
+    font-size: 18px;
+    }
+  }
+  .buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    button {
+      font-size: 20px;
+    }
   }
 }
 @import '~bulma/bulma.sass';

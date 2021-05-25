@@ -13,7 +13,6 @@ export default function Register() {
     passwordConfirmation: '',
     avatar: '',
   })
-  console.log('this error', formErrors)
   
 
   const handleImageUpload = file => {
