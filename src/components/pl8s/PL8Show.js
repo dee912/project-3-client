@@ -2,10 +2,20 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getSinglePl8 } from '../../lib/api'
 
+const r8ingOptions = []
+for (let i = 0; i < 9; i++) {
+  r8ingOptions.push(i)
+}
+console.log(r8ingOptions)
+
 export default function PL8Show() {
   const { pl8Id } = useParams()
   const [pl8, setPl8] = useState(null)
   console.log(pl8Id)
+
+  const handleR8ing = (event) => {
+    console.log(event.target.value)
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -36,6 +46,16 @@ export default function PL8Show() {
               :
               <span>No r8ings yet</span>
             }</h3>
+            <select
+              onChange={handleR8ing}
+            >
+              {r8ingOptions.map(option => (
+                <option 
+                  key={option}
+                  value={option}
+                >{option}</option>
+              ))}
+            </select>
             <h3 className="title is-3">Origin:</h3>
             <p>{pl8.origin}</p>
             <hr />
