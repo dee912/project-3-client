@@ -7,7 +7,7 @@ import { useState } from 'react'
 import ImageUpload from '../ImageUpload'
 
 export default function Cr8APl8() {
-  const history = useHistory
+  const history = useHistory()
   const { formdata, formErrors, handleChange, setFormErrors } = useForm({
     name: '',
     origin: '',
@@ -33,12 +33,8 @@ export default function Cr8APl8() {
   }
 
   const handleChangeRecipeStep = (event, i) => {
-    console.log(event)
     const newArray = [...formdata.recipe]
     newArray[i] = event.target.value
-    console.log(newArray[i])
-    console.log(event.target.value)
-    console.log(newArray)
     handleChange({ target: { name: 'recipe', value: newArray } })
   }
 
@@ -51,13 +47,11 @@ export default function Cr8APl8() {
     
     try {
       const { data } = await cr8APl8(formdata)
+      console.log(data._id)
       history.push(`/pl8s/${data._id}`)
     } catch (err) {
       console.log(err)
-      setFormErrors(err.response.data.errors)
-      console.log(err)
     }
-    window.alert(`Submitting ${JSON.stringify(formdata, null, 2)}`)
   }
 
   return (
@@ -86,7 +80,7 @@ export default function Cr8APl8() {
               <label className="label">Origin</label>
               <div className="control">
                 <input
-                  className={`input ${formErrors.origin ? 'is-danger' : ''}`}
+                  className={`input ${formErrors.name ? 'is-danger' : ''}`}
                   placeholder="Origin"
                   name="origin"
                   onChange={handleChange}
@@ -99,7 +93,7 @@ export default function Cr8APl8() {
               <label className="label">Description</label>
               <div className="control">
                 <input
-                  className={`input ${formErrors.description ? 'is-danger' : ''}`}
+                  className={`input ${formErrors.name ? 'is-danger' : ''}`}
                   placeholder="Description"
                   name="description"
                   onChange={handleChange}
