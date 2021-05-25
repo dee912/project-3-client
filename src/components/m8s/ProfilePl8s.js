@@ -11,20 +11,10 @@ export default function ProfilePl8s({ username }) {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const res = await getAllPl8s()
-        setPl8(res.data)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    getData()
-  }, [])
-
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await m8Profile(m8Id)
-        setM8(res.data)
+        const resPl8 = await getAllPl8s()
+        const resM8 = await m8Profile(m8Id)
+        setPl8(resPl8.data)
+        setM8(resM8.data)
       } catch (e) {
         console.log(e)
       }
