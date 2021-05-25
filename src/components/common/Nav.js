@@ -12,7 +12,6 @@ export default function Nav() {
   const [searchValue, setSearchValue] = useState(null)
   const { m8Id } = getPayload()
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated())
-  console.log(m8Id)
   const handleChange = (e) => {
     setSearchValue(e.target.value)
   }
@@ -36,8 +35,6 @@ export default function Nav() {
       console.log(err)
     }
   }
-  console.log(isLoggedIn)
-
   useEffect(() => {
     setIsLoggedIn(isAuthenticated)
   }, [location.pathname])

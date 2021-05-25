@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { getSinglePl8 } from '../../lib/api'
+import { getId, getPayload } from '../../lib/auth'
 
 const r8ingOptions = []
 for (let i = 0; i < 9; i++) {
@@ -10,19 +12,43 @@ console.log(r8ingOptions)
 
 export default function PL8Show() {
   const { pl8Id } = useParams()
+  const { m8Id } = getPayload()
   const [pl8, setPl8] = useState(null)
-  console.log(pl8Id)
+  const [meanR8ing, setMeanR8ing] = useState(0)
 
   const handleR8ing = (event) => {
-    console.log(event.target.value)
+
+    const oldR8ing = pl8.r8ings.find(r8ing => {
+      return r8ing.m8 === m8Id
+    })
+    const newR8ing = async () => {
+      if (!oldR8ing) {
+        await cr8R8ing(pl8Id, { r8ing: event.target.value })
+      } else {
+        console.log(oldR8ing._id)
+        const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
+        setPl8({...data})
+      }
+      calculateMeanR8ing(pl8.r8ings)
+    }
+    newR8ing()
   }
+
+  const calculateMeanR8ing = (r8ings) => {
+    const mean = r8ings.reduce((acc, r8ing) => {
+      return acc + r8ing.r8ing
+    }, 0) / r8ings.length
+    console.log(mean)
+    setMeanR8ing(mean)
+  }
+  
 
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getSinglePl8(pl8Id)
-        console.log(data)
         setPl8(data)
+        calculateMeanR8ing(data.r8ings)
       } catch (err) {
         console.log(err)
       }
@@ -40,9 +66,7 @@ export default function PL8Show() {
             <p>{pl8.description}</p>
             <hr />
             <h3 className="title is-3">R8ing: {pl8.r8ings.length > 0 ?
-              <span>{pl8.r8ings.reduce((r8ing, acc) => {
-                return acc + r8ing.r8ing
-              }, 0) / pl8.r8ings.length} outta 8</span>
+              <span>{meanR8ing} outta 8</span>
               :
               <span>No r8ings yet</span>
             }</h3>
