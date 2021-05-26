@@ -34,7 +34,7 @@ export default function PL8Show() {
         calculateMeanR8ing([...pl8.r8ings, event.target.value])
         await cr8R8ing(pl8Id, { r8ing: event.target.value })
       } else {
-        console.log(oldR8ing._id)
+        console.log('oldr8ingId', oldR8ing._id)
         const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
         setPl8({ ...data })
         console.log({ ...data.r8ings })
