@@ -1,6 +1,5 @@
 import { isOwner } from '../../lib/auth'
 
-
 export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave }) {
   const handleEdit = () => {
     setEdit(true)
