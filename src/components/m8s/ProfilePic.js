@@ -1,13 +1,10 @@
 import { isOwner } from '../../lib/auth'
-import ImageUpload from '../ImageUpload'
+import ImageUpload from './ImageUpdate'
+
 
 export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave, setFormdata }) {
   const handleEdit = () => {
     setEdit(true)
-  }
-
-  const changeImage = file => {
-    setFormdata({ target: { name: 'avatar', value: file }, ...formdata })
   }
 
   return (
@@ -37,9 +34,7 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
           {isOwner(_id) && !edit && <button onClick={handleEdit} className="card-footer-item">Edit</button>}
           {edit &&
             <div className="card-footer-item">
-
-              <ImageUpload onUpload={changeImage}/>
-
+              <ImageUpload setFormdata={setFormdata} formdata={formdata}/>
               <button className='card-footer-item' onClick={handleSave}>Save Changes</button>
             </div>}
         </footer>

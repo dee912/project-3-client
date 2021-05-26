@@ -21,6 +21,10 @@ export function cr8APl8(formdata) {
   return axios.post(`${baseUrl}/pl8s`, formdata, headers())
 }
 
+export function deletePl8(pl8Id) {
+  return axios.delete(`${baseUrl}/pl8s/${pl8Id}`, headers())
+}
+
 export function registerM8(formdata) {
   return axios.post(`${baseUrl}/become-a-m8`, formdata)
 }
@@ -35,6 +39,10 @@ export function m8Profile(m8Id) {
 
 export function editM8(m8Id, formdata) {
   return axios.put(`${baseUrl}/m8/${m8Id}`, formdata, headers())
+}
+
+export function deleteM8(m8Id) {
+  return axios.delete(`${baseUrl}/m8/${m8Id}`, headers())
 }
 
 export function getAllM8s() {
