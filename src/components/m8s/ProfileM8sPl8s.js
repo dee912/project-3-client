@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { getAllPl8s } from '../../lib/api'
-
 export default function ProfilePl8s({ username, r8dPl8s }) {
   const { m8Id } = useParams()
 
