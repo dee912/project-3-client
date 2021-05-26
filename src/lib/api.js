@@ -41,6 +41,10 @@ export function editM8(m8Id, formdata) {
   return axios.put(`${baseUrl}/m8/${m8Id}`, formdata, headers())
 }
 
+export function deleteM8(m8Id) {
+  return axios.delete(`${baseUrl}/m8/${m8Id}`, headers())
+}
+
 export function getAllM8s() {
   return axios.get(`${baseUrl}/m8s`)
 }
