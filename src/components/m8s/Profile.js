@@ -41,14 +41,14 @@ export default function M8Show() {
       setFormdata({ ...m8 })
     }
   }
-  
+
   return (
     <section>
       { m8 &&
         <div className="section">
           <div className="container">
             <div className="columns">
-              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave}/>
+              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave} setFormdata={setFormdata}/>
               <div className="column is-7 is-offset-0">
                 <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange}/>
                 <hr />
