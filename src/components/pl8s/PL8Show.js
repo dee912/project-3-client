@@ -22,19 +22,24 @@ export default function PL8Show() {
   const [deleted, setDeleted] = useState(false)
 
   const handleR8ing = (event) => {
-
     const oldR8ing = pl8.r8ings.find(r8ing => {
+      console.log(r8ing.m8 === m8Id)
       return r8ing.m8 === m8Id
     })
+    console.log(oldR8ing)
+    console.log('m8Id', m8Id)
+    console.log(pl8)
     const newR8ing = async () => {
       if (!oldR8ing) {
+        calculateMeanR8ing([...pl8.r8ings, event.target.value])
         await cr8R8ing(pl8Id, { r8ing: event.target.value })
       } else {
-        console.log(oldR8ing._id)
+        console.log('oldr8ingId', oldR8ing._id)
         const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
         setPl8({ ...data })
+        console.log({ ...data.r8ings })
+        calculateMeanR8ing([...data.r8ings])
       }
-      calculateMeanR8ing(pl8.r8ings)
     }
     newR8ing()
   }
