@@ -64,7 +64,7 @@ export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, 
           </div>
         </div>
       }
-      {index === 2 && <Link to={`/pl8/${pl8Id}/comments`}>View all comments</Link>}
+      {index === 2 && <Link to={`/pl8s/${pl8Id}/comments`}>View all comments</Link>}
       {commentToEdit &&
         <div className='commentPopUp'>
           <h1>Edit the Comment</h1>
