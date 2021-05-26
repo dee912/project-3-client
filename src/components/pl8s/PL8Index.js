@@ -4,6 +4,7 @@ import { getAllPl8s } from '../../lib/api'
 
 export default function PL8Index() {
   const [pl8s, setPl8s] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
 
   React.useEffect(() => {
     const getData = async () => {
@@ -17,16 +18,35 @@ export default function PL8Index() {
     getData()
   }, [])
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
+  }
+
+  console.log('index:', pl8s && pl8s)
+  
+
   return (
-    <div className="container">
-      <div className="columns">
-        {pl8s && pl8s.map(pl8 => (
-          <PL8Card
-            key={pl8._id}
-            {...pl8}
-          />
-        ))}
+    <>
+      
+      <div className="container">
+        <input className="input is-rounded" type="text" placeholder="Find pl8s" onChange={handleChange} />
+        <div className="index">
+          {pl8s && pl8s.filter((pl8) => {
+            if (searchTerm === '') {
+              return pl8
+            } else if (pl8.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return pl8
+            }
+          }).map(pl8 => (
+            <>
+              <PL8Card
+                key={pl8._id}
+                {...pl8}
+              />
+            </>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
