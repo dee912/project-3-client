@@ -142,7 +142,7 @@ export default function PL8Show() {
             <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
             <hr />
             {pl8.comments.map((comment, index) => (
-              <div key={comment._id}><Pl8Comment comment={comment} index={index} showPage={true} pl8Id={pl8Id} updating={updating} setUpdating={setUpdating} setDeleted={setDeleted}/></div>
+              <div key={comment._id}><Pl8Comment comment={comment} index={index} pl8Id={pl8Id} updating={updating} setUpdating={setUpdating} setDeleted={setDeleted}/></div>
             ))}
           </div>
         </div>

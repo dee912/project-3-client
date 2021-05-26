@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { deleteComment, editComment, m8Profile } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
 
-export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, setUpdating, setDeleted }) {
+export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdating, setDeleted }) {
   const [m8, setM8] = React.useState(null)
   const [commentToEdit, setCommentToEdit] = React.useState(false)
   const [editedComment, setEditedComment] = React.useState(comment.text)
@@ -53,7 +53,7 @@ export default function Pl8Comment({ comment, index, showPage, pl8Id, updating, 
 
   return (
     <div>
-      {showPage && index < 2 && m8 &&
+      {index < 2 && m8 &&
         <div className='commentLayout'>
           <Link to={`/m8/${comment.m8}`} className='commentImage'>
             <img src={m8.avatar} alt={m8.username} />
