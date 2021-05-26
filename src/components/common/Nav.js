@@ -35,6 +35,7 @@ export default function Nav() {
       console.log(err)
     }
   }
+
   useEffect(() => {
     setIsLoggedIn(isAuthenticated)
   }, [location.pathname])
@@ -65,48 +66,28 @@ export default function Nav() {
               </Link>
             </>
           }
-        </div>
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            <div className="buttons">
-              {isLoggedIn ?
-                <button className="button" onClick={handleLogout}>
+          <div className="navbar-menu">
+            <div className="navbar-end">
+              <div className="buttons">
+                {isLoggedIn ?
+                  <button className="button" onClick={handleLogout}>
                   Log Out
-                </button>
-                :
-                <>
-                  <Link to="/login" className="button">
-                    Login
-                  </Link>
-                  <Link to="/become-a-m8" className="button">
-                    Become a M8
-                  </Link>
-                </>
-              }
-            </div>
-            <form type="search" onSubmit={handleSubmit}>
-              <span className="navbar-item is-inline-block">
-                <span className="field">
-                  <span className="control">
-                    <input
-                      className="input"
-                      type="search"
-                      placeholder="FIND A PL8 M8"
-                      onKeyUp={handleChange}
-                    />
-                  </span>
-                </span>
-              </span>
-              <span className="navbar-item is-inline-block">
-                <span className="field">
-                  <button type="submit" className="button is-warning">
-                    Search
                   </button>
-                </span>
-              </span>
-            </form>
+                  :
+                  <>
+                    <Link to="/login" className="button">
+                    Login
+                    </Link>
+                    <Link to="/become-a-m8" className="button">
+                    Become a M8
+                    </Link>
+                  </>
+                }
+              </div>
+            </div>
           </div>
         </div>
+        
       </div>
     </nav>  
   )
