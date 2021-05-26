@@ -14,7 +14,6 @@ export default function Register() {
     avatar: '',
   })
   
-
   const handleImageUpload = file => {
     handleChange({ target: { name: 'avatar', value: file } })
   }

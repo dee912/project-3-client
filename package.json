@@ -20,7 +20,9 @@
     "react-select": "^4.3.1",
     "react-slick": "^0.28.1",
     "react-spring": "^9.1.2",
-    "sass": "^1.33.0"
+    "react-transition-group": "^4.4.1",
+    "sass": "^1.33.0",
+    "swup": "^2.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

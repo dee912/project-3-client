@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { deletePl8 } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
@@ -142,6 +142,9 @@ export default function PL8Show() {
             }
           </div>
           <div className="column is-quarter">
+            <h3 className="title is-3">Pl8 Maker:</h3>
+            <Link to={`/m8/${pl8.m8._id}`}>{pl8.m8.username}</Link>
+            <hr />
             <img className='showImage' src={pl8.image} alt={pl8.name} />
             <br />
             <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
