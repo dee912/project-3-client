@@ -23,6 +23,8 @@ export default function ProfilePl8s({ username }) {
   }, [m8Id])
 
   const ownPl8s = (pl8 && m8 && pl8.filter(pl8s => pl8s.m8 === m8._id))
+  console.log('own plates:', ownPl8s && ownPl8s.length)
+  
   
   return (
     <section>
@@ -31,18 +33,23 @@ export default function ProfilePl8s({ username }) {
       </div>
       <br/>
       <div className="containerScroll">
-        {ownPl8s && (
-          ownPl8s.map(ownPl8s => (
-            <div key={ownPl8s._id} >
+        {ownPl8s && ownPl8s.length > 0 ? (
+          ownPl8s.map(ownPl8 => (
+            <div key={ownPl8._id} >
               <div  className="cardScroll">
-                <Link to={`/pl8s/${ownPl8s._id}` } >
-                  <p className="title is-4">{ownPl8s.name}</p>
-                  <img className="friends" src={ownPl8s.image} alt={ownPl8s.username}/>
+                <Link to={`/pl8s/${ownPl8._id}` } >
+                  <p className="title is-4">{ownPl8.name}</p>
+                  <img className="friends" src={ownPl8.image} alt={ownPl8.username}/>
                 </Link>
               </div>
             </div>
           ))
-        )}
+        ) :
+          <div className="cardScroll">
+            <p className="title is-4">This m8 has no pl8s</p>
+            <img className="friends" src="https://i.kym-cdn.com/entries/icons/facebook/000/017/966/jordan-crying.jpg" alt="sad jordan"/>
+          </div>
+        }
       </div>
     </section>
   )

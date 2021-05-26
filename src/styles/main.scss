@@ -157,6 +157,10 @@ textarea {
 
 
 .cardScroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   width: 300px;
   height: 300px;
@@ -164,7 +168,6 @@ textarea {
   margin: 10px 10px 10px 5px;
   padding: 20px;
   box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, .1);
-
 }
 
 .cardScroll:hover {
@@ -175,9 +178,6 @@ textarea {
 }
 
 .friends {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
   border-radius: 5px;
   height: 20vh;
