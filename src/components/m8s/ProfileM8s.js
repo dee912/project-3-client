@@ -23,7 +23,7 @@ export default function ProfileM8s({ formdata }) {
   return (
     <section>
       <div className="media-content">
-        <p className="title is-4">{formdata.username}&apos;s m8s</p>
+        <p className="title is-4">{formdata.username}&apos;s pl8s</p>
       </div>
       <br/>
       <div className="containerScroll">
