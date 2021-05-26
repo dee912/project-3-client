@@ -25,7 +25,6 @@ export default function ProfilePl8s({ username }) {
   const ownPl8s = (pl8 && m8 && pl8.filter(pl8s => pl8s.m8 === m8._id))
   console.log('own plates:', ownPl8s && ownPl8s.length)
   
-  
   return (
     <section>
       <div className="media-content">
