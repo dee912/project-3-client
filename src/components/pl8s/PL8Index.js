@@ -29,7 +29,12 @@ export default function PL8Index() {
     <>
       
       <div className="container">
-        <input className="input is-rounded" type="text" placeholder="Find pl8s" onChange={handleChange} />
+        <input 
+          className="input is-rounded" 
+          type="text" 
+          placeholder="Find pl8s" 
+          onChange={handleChange} 
+        />
         <div className="index">
           {pl8s && pl8s.filter((pl8) => {
             if (searchTerm === '') {

@@ -25,6 +25,10 @@ export function deletePl8(pl8Id) {
   return axios.delete(`${baseUrl}/pl8s/${pl8Id}`, headers())
 }
 
+export function editPl8(pl8Id, formdata) {
+  return axios.put(`${baseUrl}/pl8s/${pl8Id}`, formdata, headers())
+}
+
 export function registerM8(formdata) {
   return axios.post(`${baseUrl}/become-a-m8`, formdata)
 }

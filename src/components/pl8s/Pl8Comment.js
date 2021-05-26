@@ -69,7 +69,11 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
         <div className='commentPopUp'>
           <h1>Edit the Comment</h1>
           <div className='enterText'>
-            <textarea value={editedComment} maxLength='150' onChange={(e) => setEditedComment(e.target.value)} />
+            <textarea 
+              value={editedComment} 
+              maxLength='150' 
+              onChange={(e) => setEditedComment(e.target.value)} 
+            />
             <p>Reamaining Characters: {150 - editedComment.length}</p>
           </div>
           <div className='buttons'>
