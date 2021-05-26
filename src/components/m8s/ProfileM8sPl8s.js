@@ -3,24 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 
 import { getAllPl8s } from '../../lib/api'
 
-export default function ProfilePl8s({ username }) {
+export default function ProfilePl8s({ username, r8dPl8s }) {
   const { m8Id } = useParams()
-  const [pl8, setPl8] = React.useState(null)
 
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const resPl8 = await getAllPl8s()
-        setPl8(resPl8.data)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    getData()
-  }, [m8Id])
+  const findR8ing = (r8ings) => {
+    return r8ings.find(r8ing => {
+      return r8ing.m8 === m8Id
+    })
+  }
   
-  
-
   return (
     <section>
       <div className="media-content">
@@ -28,13 +19,14 @@ export default function ProfilePl8s({ username }) {
       </div>
       <br/>
       <div className="containerScroll">
-        {pl8 && pl8.length > 0 ? (
-          pl8.map(pl8s => (
-            <div key={pl8s._id} >
+        {r8dPl8s && r8dPl8s.length > 0 ? (
+          r8dPl8s.map(pl8 => (
+            <div key={pl8._id} >
               <div  className="cardScroll">
-                <Link to={`/pl8s/${pl8s._id}` } >
-                  <p className="title is-4">{pl8s.name}</p>
-                  <img className="friends" src={pl8s.image} alt={pl8s.username}/>
+                <Link to={`/pl8s/${pl8._id}` } >
+                  <p className="title is-4">{pl8.name}</p>
+                  <img className="friends" src={pl8.image} alt={pl8.username}/>
+                  <p>{findR8ing(pl8.r8ings).r8ing} outta 8</p>
                 </Link>
               </div>
             </div>

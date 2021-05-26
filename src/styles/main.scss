@@ -240,26 +240,6 @@ textarea {
   align-items: center;
 }
 
-.list {
-  width: 300px;
-  height: 300px;
-  border-radius: 5px;
-  margin: 10px 10px 10px 5px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, .1);
-}
-
-.list:hover {
-  transform: scale(1.02);
-  box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, .1);
-  transition: 0.3s;
-}
-
-.index-img {
-  width: 20vw;
-  height: 20vh;
-}
-
 .is-rounded {
   margin: 10px;
 }
@@ -383,4 +363,5 @@ textarea {
     }
   }
 }
+
 @import '~bulma/bulma.sass';
