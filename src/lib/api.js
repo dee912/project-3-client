@@ -47,3 +47,15 @@ export function cr8R8ing(pl8Id, r8ing) {
 export function upd8R8ing(pl8Id, r8ingId, r8ing) {
   return axios.put(`${baseUrl}/pl8s/${pl8Id}/r8ings/${r8ingId}`, r8ing, headers())
 }
+
+export function addComment(pl8Id, comment) {
+  return axios.post(`${baseUrl}/pl8/${pl8Id}/comment`, comment, headers())
+}
+
+export function editComment(pl8Id, comment, commentId) {
+  return axios.put(`${baseUrl}/pl8/${pl8Id}/comment/${commentId}`, comment, headers())
+}
+
+export function deleteComment(pl8Id, commentId) {
+  return axios.delete(`${baseUrl}/pl8/${pl8Id}/comment/${commentId}`, headers())
+}

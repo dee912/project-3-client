@@ -9,7 +9,6 @@ export default function PL8Index() {
     const getData = async () => {
       try {
         const { data } = await getAllPl8s()
-        console.log(data)
         setPl8s(data)
       } catch (err) {
         console.log(err)
