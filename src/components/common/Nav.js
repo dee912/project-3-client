@@ -9,17 +9,8 @@ export default function Nav() {
   const [visibleCracks, setVisibleCracks] = useState(false)
   const history = useHistory()
   const location = useLocation()
-  const [searchValue, setSearchValue] = useState(null)
   const { m8Id } = getPayload()
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated())
-  const handleChange = (e) => {
-    setSearchValue(e.target.value)
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log(searchValue)
-  }
 
   const handleLogout = () => {
     removeToken()
