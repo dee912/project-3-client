@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import 'pure-react-carousel/dist/react-carousel.es.css'
 
 import { getAllM8s } from '../../lib/api'
 

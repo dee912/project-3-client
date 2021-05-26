@@ -36,9 +36,11 @@ export function m8Profile(m8Id) {
 export function editM8(m8Id, formdata) {
   return axios.put(`${baseUrl}/m8/${m8Id}`, formdata, headers())
 }
+
 export function getAllM8s() {
   return axios.get(`${baseUrl}/m8s`)
 }
+
 export function cr8R8ing(pl8Id, r8ing) {
   return axios.post(`${baseUrl}/pl8s/${pl8Id}/r8ings`, r8ing, headers())
 } 
