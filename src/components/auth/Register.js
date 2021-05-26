@@ -21,9 +21,12 @@ export default function Register() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-
     try {
-      await registerM8(formdata)
+      if (!formdata.avatar) {
+        await registerM8({ ...formdata, avatar: 'https://i.stack.imgur.com/l60Hf.png' })
+      } else {
+        await registerM8(formdata)
+      }
       history.push('/login')
     } catch (err) {
       setFormErrors(err.response.data.formErrors)

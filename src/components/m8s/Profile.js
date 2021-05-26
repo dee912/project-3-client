@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import useForm from '../../hooks/useForm'
 import { editM8, m8Profile } from '../../lib/api'
+import { isAuthenticated, isOwner } from '../../lib/auth'
 import ProfileBio from './ProfileBio'
 import ProfileM8s from './ProfileM8s'
 import ProfileM8sPl8s from './ProfileM8sPl8s'
@@ -48,9 +49,9 @@ export default function M8Show() {
         <div className="section">
           <div className="container">
             <div className="columns">
-              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave} setFormdata={setFormdata}/>
+              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave} setFormdata={setFormdata} />
               <div className="column is-7 is-offset-0">
-                <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange}/>
+                <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange} />
                 <hr />
                 <ProfileM8s formdata={formdata} />
               </div>
@@ -60,6 +61,7 @@ export default function M8Show() {
             <hr />
             <ProfileM8sPl8s {...m8} />
           </div>
+          {isAuthenticated() && !isOwner(m8._id) && <button className='addM8'>Add M8</button>}
         </div>
       }
     </section>

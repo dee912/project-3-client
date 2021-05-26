@@ -363,5 +363,12 @@ textarea {
     }
   }
 }
+.addM8{
+  position: absolute;
+  top: 80px;
+  right: 5px;
+  background-color: lightskyblue;
+  font-size: 20px;
+}
 
 @import '~bulma/bulma.sass';

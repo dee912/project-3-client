@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
@@ -140,8 +140,8 @@ export default function PL8Show() {
               ))}
             </ol>
             <hr />
-            <h3 className="title is-3">Owner:</h3>
-            <p>{pl8.m8.username}</p>
+            <h3 className="title is-3">Pl8 Maker:</h3>
+            <Link to={`/m8/${pl8.m8._id}`}>{pl8.m8.username}</Link>
             <hr />
           </div>
           <div className="column is-quarter">
