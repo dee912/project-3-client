@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
+import { deletePl8 } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 
@@ -12,6 +13,7 @@ import { isAuthenticated } from '../../lib/auth'
 import Pl8Comment from './Pl8Comment'
 
 export default function PL8Show() {
+  const history = useHistory()
   const { pl8Id } = useParams()
   const { m8Id } = getPayload()
   const [pl8, setPl8] = useState(null)
@@ -20,6 +22,7 @@ export default function PL8Show() {
   const [writtenComment, setWrittenComment] = useState('')
   const [updating, setUpdating] = useState(false)
   const [deleted, setDeleted] = useState(false)
+  const [isOwner, setIsOwner] = useState(false)
 
   const handleR8ing = (event) => {
     const oldR8ing = pl8.r8ings.find(r8ing => {
@@ -63,6 +66,7 @@ export default function PL8Show() {
         setDeleted(false)
         setPl8(data)
         calculateMeanR8ing(data.r8ings)
+        setIsOwner(data.m8._id === m8Id)
       } catch (err) {
         console.log(err)
       }
@@ -97,6 +101,14 @@ export default function PL8Show() {
     setUpdating(false)
     setCommentToAdd(false)
   }
+
+  const handleDelete = async () => {
+    console.log('click')
+    await deletePl8(pl8._id)
+    history.push('/pl8s')
+  }
+
+  console.log('isOwner', isOwner)
 
   return (
     <div className="container">
@@ -143,6 +155,9 @@ export default function PL8Show() {
             <h3 className="title is-3">Owner:</h3>
             <p>{pl8.m8.username}</p>
             <hr />
+            {isOwner && 
+              <button onClick={handleDelete}>Delete Pl8</button>
+            }
           </div>
           <div className="column is-quarter">
             <img className='showImage' src={pl8.image} alt={pl8.name} />
