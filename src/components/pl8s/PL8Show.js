@@ -74,8 +74,8 @@ export default function PL8Show() {
   const submitComment = async () => {
     try {
       if (writtenComment !== '') {
-        const { data } = await addComment(pl8._id, { text: writtenComment })
-        setPl8({ ...data })
+        await addComment(pl8._id, { text: writtenComment })
+        setDeleted(true)
         setWrittenComment('')
       }
       endUpdating()
