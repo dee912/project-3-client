@@ -191,7 +191,6 @@ textarea {
   align-items: center;
   justify-content: space-between;
   height: 10vh;
-  border: 1px solid black;
   .commentImage{
     border: 1px solid black;
     border-radius: 50%;
@@ -206,10 +205,12 @@ textarea {
   p {
     display: flex;
     align-items: center;
+    overflow: hidden;
     border-left: 2px solid black;
     height: 100%;
     padding-left: 10px;
     width: 80%;
+    max-width: 400px;
   }
   div {
     height: 100%;
@@ -331,7 +332,9 @@ textarea {
         display: flex;
         align-items: center;
         p {
+          max-width: 80%;
           margin-left: 10px;
+          word-wrap: break-word;
         }
       }
       .editDiv{
