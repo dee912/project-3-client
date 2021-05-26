@@ -10,14 +10,14 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await m8Profile(comment.m8)
+        const { data } = await m8Profile(comment.m8._id)
         setM8(data)
       } catch (error) {
         console.log(error)
       }
     }
     getData()
-  }, [comment.m8])
+  }, [comment.m8._id])
 
   const allowUpdating = () => {
     if (!updating) {
@@ -55,12 +55,12 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
     <div>
       {index < 2 && m8 &&
         <div className='commentLayout'>
-          <Link to={`/m8/${comment.m8}`} className='commentImage'>
+          <Link to={`/m8/${comment.m8._id}`} className='commentImage'>
             <img src={m8.avatar} alt={m8.username} />
           </Link>
           <p>{comment.text}</p>
           <div>
-            {isOwner(comment.m8) && <button onClick={allowUpdating}>Edit</button>}
+            {isOwner(comment.m8._id) && <button onClick={allowUpdating}>Edit</button>}
           </div>
         </div>
       }

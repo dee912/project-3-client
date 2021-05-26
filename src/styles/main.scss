@@ -266,4 +266,81 @@ textarea {
     }
   }
 }
+
+.commentsPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .topDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    h1{
+      font-size: 45px;
+    }
+    img{
+      max-width: 20%;
+    }
+    hr {
+      width: 90%;
+    }
+  }
+  .mainContent{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .fullComment {
+      margin: 15px 0;
+      width: 45%;
+      display: flex;
+      border: 1px solid black;
+      .whoPosted {
+        height: 200px;
+        width: 20%;
+        border-right: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        .link {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          height: 70%;
+          width: 80%;
+          .imageLink {
+            border: 1px solid black;
+            border-radius: 50%;
+            height: 50%;
+          }
+        }
+        small {
+          text-align: center;
+        }
+      }
+      .text {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+        }
+      }
+      .editDiv{
+        display: flex;
+        width: 10%;
+        height: 100%;
+        align-items: center;
+      }
+    }
+  }
+}
 @import '~bulma/bulma.sass';
