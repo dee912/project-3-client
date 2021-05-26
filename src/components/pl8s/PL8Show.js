@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useHistory, useParams, Link  } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { deletePl8 } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
@@ -10,7 +10,9 @@ for (let i = 0; i < 9; i++) {
   r8ingOptions.push(i)
 }
 import { isAuthenticated } from '../../lib/auth'
+import Pl8Details from './Pl8Details'
 import Pl8Comment from './Pl8Comment'
+import Pl8Edit from './Pl8Edit'
 
 export default function PL8Show() {
   const history = useHistory()
@@ -23,6 +25,7 @@ export default function PL8Show() {
   const [updating, setUpdating] = useState(false)
   const [deleted, setDeleted] = useState(false)
   const [isOwner, setIsOwner] = useState(false)
+  const [edit, setEdit] = useState(false)
 
   const handleR8ing = (event) => {
     const oldR8ing = pl8.r8ings.find(r8ing => {
@@ -72,7 +75,7 @@ export default function PL8Show() {
       }
     }
     getData()
-  }, [pl8Id, deleted])
+  }, [pl8Id, deleted, edit])
 
   const handleInput = (e) => {
     setWrittenComment(e.target.value)
@@ -103,60 +106,40 @@ export default function PL8Show() {
   }
 
   const handleDelete = async () => {
-    console.log('click')
-    await deletePl8(pl8._id)
-    history.push('/pl8s')
+    if (window.confirm('Are you sure you want to delete this Pl8?')) {
+      await deletePl8(pl8._id)
+      history.push('/pl8s')
+    }
   }
 
-  console.log('isOwner', isOwner)
+  const toggleEdit = () => {
+    setEdit(!edit)
+  }
 
   return (
     <div className="container">
       {pl8 && (
         <div className="columns">
           <div className="column is-half">
-            <h1 className="title is-1">{pl8.name}</h1>
-            <h3 className="title is-3">Description:</h3>
-            <p>{pl8.description}</p>
-            <hr />
-            <h3 className="title is-3">R8ing: {pl8.r8ings.length > 0 ?
-              <span>{meanR8ing} outta 8</span>
+            {!edit ?
+              <Pl8Details 
+                { ...pl8 }
+                r8ingOptions={r8ingOptions}
+                meanR8ing={meanR8ing}
+                handleR8ing={handleR8ing}
+              />
               :
-              <span>No r8ings yet</span>
-            }</h3>
-            <select
-              onChange={handleR8ing}
-            >
-              {r8ingOptions.map(option => (
-                <option
-                  key={option}
-                  value={option}
-                >{option}</option>
-              ))}
-            </select>
-            <hr />
-            <h3 className="title is-3">Origin:</h3>
-            <p>{pl8.origin}</p>
-            <hr />
-            <h5 className="title is-5">Prep Time: {pl8.prepTime}</h5>
-            <h5 className="title is-5">Cook Time: {pl8.cookTime}</h5>
-            <ul><h3 className="title is-3">Ingredients:</h3>
-              {pl8.ingredients.map(ingredient => (
-                <li key={ingredient}>{ingredient}</li>
-              ))}
-            </ul>
-            <hr />
-            <ol><h3 className="title is-3">Recipe:</h3>
-              {pl8.recipe.map(step => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-            <hr />
-            <h3 className="title is-3">Pl8 Maker:</h3>
-            <Link to={`/m8/${pl8.m8._id}`}>{pl8.m8.username}</Link>
-            <hr />
+              <Pl8Edit
+                { ...pl8 }
+                isOwner={isOwner}
+                toggleEdit={toggleEdit}
+              />
+            }
             {isOwner && 
-              <button onClick={handleDelete}>Delete Pl8</button>
+              <>
+                <button onClick={handleDelete}>Delete Pl8</button>
+                {!edit && <button onClick={toggleEdit}>Edit Pl8</button>}
+              </>
             }
           </div>
           <div className="column is-quarter">
@@ -165,7 +148,15 @@ export default function PL8Show() {
             <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
             <hr />
             {pl8.comments.map((comment, index) => (
-              <div key={comment._id}><Pl8Comment comment={comment} index={index} pl8Id={pl8Id} updating={updating} setUpdating={setUpdating} setDeleted={setDeleted}/></div>
+              <div key={comment._id}>
+                <Pl8Comment 
+                  comment={comment} 
+                  index={index} 
+                  pl8Id={pl8Id} 
+                  updating={updating} 
+                  setUpdating={setUpdating} 
+                  setDeleted={setDeleted}/>
+              </div>
             ))}
           </div>
         </div>
@@ -174,7 +165,11 @@ export default function PL8Show() {
         <div className='commentPopUp'>
           <h1>Add a Comment</h1>
           <div className='enterText'>
-            <textarea maxLength='150' onChange={handleInput} value={writtenComment}/>
+            <textarea 
+              maxLength='150' 
+              onChange={handleInput} 
+              value={writtenComment}
+            />
             <p>Remaining Characters: {150 - writtenComment.length}</p>
           </div>
           <div className='buttons'>
