@@ -41,7 +41,7 @@ export default function M8Show() {
       setFormdata({ ...m8 })
     }
   }
-
+  
   return (
     <section>
       { m8 &&

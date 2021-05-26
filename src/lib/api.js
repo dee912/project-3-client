@@ -44,6 +44,7 @@ export function getAllM8s() {
 export function cr8R8ing(pl8Id, r8ing) {
   return axios.post(`${baseUrl}/pl8s/${pl8Id}/r8ings`, r8ing, headers())
 } 
+
 export function upd8R8ing(pl8Id, r8ingId, r8ing) {
   return axios.put(`${baseUrl}/pl8s/${pl8Id}/r8ings/${r8ingId}`, r8ing, headers())
 }
