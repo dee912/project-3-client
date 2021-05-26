@@ -31,8 +31,9 @@ export default function PL8Show() {
     console.log(pl8)
     const newR8ing = async () => {
       if (!oldR8ing) {
-        calculateMeanR8ing([...pl8.r8ings, event.target.value])
-        await cr8R8ing(pl8Id, { r8ing: event.target.value })
+        const { data } = await cr8R8ing(pl8Id, { r8ing: event.target.value })
+        setPl8({ ...data })
+        calculateMeanR8ing([...data.r8ings])
       } else {
         console.log('oldr8ingId', oldR8ing._id)
         const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
@@ -45,9 +46,11 @@ export default function PL8Show() {
   }
 
   const calculateMeanR8ing = (r8ings) => {
+    console.log(r8ings)
     const mean = r8ings.reduce((acc, r8ing) => {
-      return acc + r8ing.r8ing
+      return acc + Number(r8ing.r8ing)
     }, 0) / r8ings.length
+    console.log('mean', mean)
     setMeanR8ing(mean)
   }
 
