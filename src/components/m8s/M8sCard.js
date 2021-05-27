@@ -29,7 +29,7 @@ export default function M8sCard({ m8Id, setNewM8 }) {
     <>
       {m8 && <div className="cardScroll">
         <div className='m8Remover'>
-          <button onClick={removingM8}>X</button>
+          <button className="removeM8" onClick={removingM8}>X</button>
         </div>
         <Link to={`/m8/${m8._id}`} >
           <p className="title is-4">{m8.username}</p>
