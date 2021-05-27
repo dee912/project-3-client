@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PL8Card from './PL8Card'
 import { getAllPl8s } from '../../lib/api'
+import { motion } from 'framer-motion'
 
 export default function PL8Index() {
   const [pl8s, setPl8s] = useState(null)
@@ -22,36 +23,37 @@ export default function PL8Index() {
     setSearchTerm(e.target.value)
   }
 
-  console.log('index:', pl8s && pl8s)
-  
-
   return (
-    <>
-      
-      <div className="container">
-        <input 
-          className="input is-rounded" 
-          type="text" 
-          placeholder="Find pl8s" 
-          onChange={handleChange} 
-        />
-        <div className="index">
-          {pl8s && pl8s.filter((pl8) => {
-            if (searchTerm === '') {
-              return pl8
-            } else if (pl8.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return pl8
-            }
-          }).map(pl8 => (
-            <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="cardIndex">
+        <div className="container">
+          <input
+            className="input is-rounded"
+            type="text"
+            placeholder="Find pl8s"
+            onChange={handleChange}
+          />
+          <div className="index">
+            {pl8s && pl8s.filter((pl8) => {
+              if (searchTerm === '') {
+                return pl8
+              } else if (pl8.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return pl8
+              }
+            }).map(pl8 => (
               <PL8Card
                 key={pl8._id}
                 {...pl8}
               />
-            </>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </>
+
+    </motion.div>
   )
 }

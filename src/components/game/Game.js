@@ -1,5 +1,6 @@
 import { useState, useEffect, useReducer, useCallback } from 'react'
 import Projectile from './Projectile'
+import { motion } from 'framer-motion'
 
 
 function reducer(state, action) {

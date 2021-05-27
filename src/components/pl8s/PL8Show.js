@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { deletePl8 } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
+import { motion } from 'framer-motion'
+
 
 const r8ingOptions = []
 for (let i = 0; i < 9; i++) {
@@ -29,22 +31,16 @@ export default function PL8Show() {
 
   const handleR8ing = (event) => {
     const oldR8ing = pl8.r8ings.find(r8ing => {
-      console.log(r8ing.m8 === m8Id)
       return r8ing.m8 === m8Id
     })
-    console.log(oldR8ing)
-    console.log('m8Id', m8Id)
-    console.log(pl8)
     const newR8ing = async () => {
       if (!oldR8ing) {
         const { data } = await cr8R8ing(pl8Id, { r8ing: event.target.value })
         setPl8({ ...data })
         calculateMeanR8ing([...data.r8ings])
       } else {
-        console.log('oldr8ingId', oldR8ing._id)
         const { data } = await upd8R8ing(pl8Id, oldR8ing._id, { r8ing: event.target.value })
         setPl8({ ...data })
-        console.log({ ...data.r8ings })
         calculateMeanR8ing([...data.r8ings])
       }
     }
@@ -52,11 +48,9 @@ export default function PL8Show() {
   }
 
   const calculateMeanR8ing = (r8ings) => {
-    console.log(r8ings)
     const mean = r8ings.reduce((acc, r8ing) => {
       return acc + Number(r8ing.r8ing)
     }, 0) / r8ings.length
-    console.log('mean', mean)
     setMeanR8ing(mean)
   }
 
@@ -65,7 +59,6 @@ export default function PL8Show() {
     const getData = async () => {
       try {
         const { data } = await getSinglePl8(pl8Id)
-        console.log(data)
         setDeleted(false)
         setPl8(data)
         calculateMeanR8ing(data.r8ings)
@@ -115,55 +108,61 @@ export default function PL8Show() {
   const toggleEdit = () => {
     setEdit(!edit)
   }
-
   return (
-    <div className="container">
-      {pl8 && (
-        <div className="columns">
-          <div className="column is-half">
-            {!edit ?
-              <Pl8Details 
-                { ...pl8 }
-                r8ingOptions={r8ingOptions}
-                meanR8ing={meanR8ing}
-                handleR8ing={handleR8ing}
-              />
-              :
-              <Pl8Edit
-                { ...pl8 }
-                toggleEdit={toggleEdit}
-              />
-            }
-            {isOwner && 
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
+      <div className="showCard">
+        
+        <div className="container">
+          {pl8 && (
+            <div className="columns">
+              <div className="column is-half">
+                {!edit ?
+                  <Pl8Details 
+                    { ...pl8 }
+                    r8ingOptions={r8ingOptions}
+                    meanR8ing={meanR8ing}
+                    handleR8ing={handleR8ing}
+                  />
+                  :
+                  <Pl8Edit
+                    { ...pl8 }
+                    toggleEdit={toggleEdit}
+                  />
+                }
+                {isOwner && 
               <>
                 <button onClick={handleDelete}>Delete Pl8</button>
                 {!edit && <button onClick={toggleEdit}>Edit Pl8</button>}
               </>
-            }
-          </div>
-          <div className="column is-quarter">
-            <h3 className="title is-3">Pl8 Maker:</h3>
-            <Link to={`/m8/${pl8.m8._id}`}>{pl8.m8.username}</Link>
-            <hr />
-            <img className='showImage' src={pl8.image} alt={pl8.name} />
-            <br />
-            <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
-            <hr />
-            {pl8.comments.map((comment, index) => (
-              <div key={comment._id}>
-                <Pl8Comment 
-                  comment={comment} 
-                  index={index} 
-                  pl8Id={pl8Id} 
-                  updating={updating} 
-                  setUpdating={setUpdating} 
-                  setDeleted={setDeleted}/>
+                }
               </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {commentToAdd &&
+              <div className="column is-quarter">
+                <div className="cardProfile">
+                  <img className='showImage' src={pl8.image} alt={pl8.name} />
+                </div>
+                
+                <br />
+                <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
+                <hr />
+                {pl8.comments.map((comment, index) => (
+                  <div key={comment._id}>
+                    <Pl8Comment 
+                      comment={comment} 
+                      index={index} 
+                      pl8Id={pl8Id} 
+                      updating={updating} 
+                      setUpdating={setUpdating} 
+                      setDeleted={setDeleted}/>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {commentToAdd &&
         <div className='commentPopUp'>
           <h1>Add a Comment</h1>
           <div className='enterText'>
@@ -179,6 +178,10 @@ export default function PL8Show() {
             <button onClick={submitComment}>Add!</button>
           </div>
         </div>}
-    </div>
+        </div>
+      </div>
+      
+    </motion.div>
+    
   )
 }

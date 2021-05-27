@@ -31,7 +31,7 @@ function ImageUpload({ formdata, setFormdata }) {
   }
   return (
     <>
-      {!image && <button onClick={handleUpload} type="button" className="button is-fullwidth is-info">Upload Image</button>}
+      {!image && <button onClick={handleUpload} type="button" className="card-footer-item">Upload Image</button>}
     </>
   )
 }

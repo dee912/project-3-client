@@ -13,7 +13,7 @@ export default function ProfilePl8s({ username, r8dPl8s }) {
   return (
     <section>
       <div className="media-content">
-        <p className="title is-4">{username}&apos;s rated pl8s</p>
+        <h3 className="title is-4">{username}&apos;s r8ed pl8s</h3>
       </div>
       <br/>
       <div className="containerScroll">
@@ -31,7 +31,7 @@ export default function ProfilePl8s({ username, r8dPl8s }) {
           ))
         ) : (
           <div className="cardScroll">
-            <p className="title is-4">This m8&apos;s rated no pl8s</p>
+            <h5 className="title is-4">This m8&apos;s r8ed no pl8s</h5>
             <img className="friends" src="https://i.kym-cdn.com/entries/icons/facebook/000/017/966/jordan-crying.jpg" alt="sad jordan"/>
           </div>)
         }
