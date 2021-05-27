@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { cr8R8ing, upd8R8ing } from '../../lib/api'
 import { deletePl8 } from '../../lib/api'
 import { getSinglePl8, addComment } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
+import { motion } from 'framer-motion'
+
 
 const r8ingOptions = []
 for (let i = 0; i < 9; i++) {
@@ -117,53 +119,57 @@ export default function PL8Show() {
   }
 
   return (
-    <div className="container">
-      {pl8 && (
-        <div className="columns">
-          <div className="column is-half">
-            {!edit ?
-              <Pl8Details 
-                { ...pl8 }
-                r8ingOptions={r8ingOptions}
-                meanR8ing={meanR8ing}
-                handleR8ing={handleR8ing}
-              />
-              :
-              <Pl8Edit
-                { ...pl8 }
-                toggleEdit={toggleEdit}
-              />
-            }
-            {isOwner && 
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
+      <div className="showCard">
+        
+        <div className="container">
+          {pl8 && (
+            <div className="columns">
+              <div className="column is-half">
+                {!edit ?
+                  <Pl8Details 
+                    { ...pl8 }
+                    r8ingOptions={r8ingOptions}
+                    meanR8ing={meanR8ing}
+                    handleR8ing={handleR8ing}
+                  />
+                  :
+                  <Pl8Edit
+                    { ...pl8 }
+                    toggleEdit={toggleEdit}
+                  />
+                }
+                {isOwner && 
               <>
                 <button onClick={handleDelete}>Delete Pl8</button>
                 {!edit && <button onClick={toggleEdit}>Edit Pl8</button>}
               </>
-            }
-          </div>
-          <div className="column is-quarter">
-            <h3 className="title is-3">Pl8 Maker:</h3>
-            <Link to={`/m8/${pl8.m8._id}`}>{pl8.m8.username}</Link>
-            <hr />
-            <img className='showImage' src={pl8.image} alt={pl8.name} />
-            <br />
-            <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
-            <hr />
-            {pl8.comments.map((comment, index) => (
-              <div key={comment._id}>
-                <Pl8Comment 
-                  comment={comment} 
-                  index={index} 
-                  pl8Id={pl8Id} 
-                  updating={updating} 
-                  setUpdating={setUpdating} 
-                  setDeleted={setDeleted}/>
+                }
               </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {commentToAdd &&
+              <div className="column is-quarter">
+                <img className='showImage' src={pl8.image} alt={pl8.name} />
+                <br />
+                <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
+                <hr />
+                {pl8.comments.map((comment, index) => (
+                  <div key={comment._id}>
+                    <Pl8Comment 
+                      comment={comment} 
+                      index={index} 
+                      pl8Id={pl8Id} 
+                      updating={updating} 
+                      setUpdating={setUpdating} 
+                      setDeleted={setDeleted}/>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {commentToAdd &&
         <div className='commentPopUp'>
           <h1>Add a Comment</h1>
           <div className='enterText'>
@@ -179,6 +185,10 @@ export default function PL8Show() {
             <button onClick={submitComment}>Add!</button>
           </div>
         </div>}
-    </div>
+        </div>
+      </div>
+      
+    </motion.div>
+    
   )
 }

@@ -6,35 +6,6 @@ body {
   overflow-y: hidden;
 }
 
-.page {
-  position: absolute;
-  max-width: 600px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
-.fade-appear,
-.fade-enter {
-  opacity: 0;
-  z-index: 1;
-}
-
-.fae-appear-active,
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms linear 150ms;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-
-.fade-exit.fade-exit-active {
-  opacity: 0;
-  transition: opacity 150ms linear;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 .background {
@@ -196,6 +167,7 @@ textarea {
 
 
 .cardScroll {
+  background-color: rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -424,4 +396,43 @@ textarea {
     color: whitesmoke;
   }
 }
+.cardIndex {
+  background: url(https://c1.wallpaperflare.com/preview/135/201/157/background-food-tasty-olives.jpg),
+  linear-gradient(rgb(255, 255, 255), transparent),
+  linear-gradient(to top, rgb(255, 255, 255), transparent);
+  background-blend-mode: screen;
+  background-size: cover;
+  background-position: center;
+}
+
+.showCard{
+  background: url(https://images.squarespace-cdn.com/content/v1/5463df57e4b05c41e0cdd600/1439492263995-ADPX7TVR1SA5VUEFOWAS/ke17ZwdGBToddI8pDm48kOvSl7uZBiJvhHNx8kGuj7N7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQJVLCXI9FCYomYbws-y-45T4YLCF5qkYPw7Lwwtgtn6_Pu309TggK9CQbI7GxGOBQ/image-asset.jpeg?format=2500w),
+  linear-gradient(rgb(255, 255, 255), transparent),
+  linear-gradient(to top, rgb(255, 255, 255), transparent);
+  background-blend-mode: screen;
+  background-size: cover;
+  background-position: center;
+}
+
+.profilePage {
+  background: url(https://cdn.hipwallpaper.com/i/0/68/OG1FLx.jpg),
+  linear-gradient(rgb(255, 255, 255), transparent),
+  linear-gradient(to top, rgb(255, 255, 255), transparent);
+  background-blend-mode: screen;
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
+}
+
+.profileHr {
+  border: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0);
+}
+
+
+
 @import '~bulma/bulma.sass';
