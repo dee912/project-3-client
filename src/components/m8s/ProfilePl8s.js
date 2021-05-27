@@ -27,7 +27,7 @@ export default function ProfilePl8s({ username }) {
   return (
     <section>
       <div className="media-content">
-        <p className="title is-4">{username}&apos;s pl8s</p>
+        <h3 className="title is-4">{username}&apos;s pl8s</h3>
       </div>
       <br />
       <div className="containerScroll">
@@ -36,7 +36,7 @@ export default function ProfilePl8s({ username }) {
             <div key={ownPl8._id} >
               <div className="cardScroll">
                 <Link to={`/pl8s/${ownPl8._id}`} >
-                  <p className="title is-4">{ownPl8.name}</p>
+                  <h3 className="title is-4">{ownPl8.name}</h3>
                   <img className="friends" src={ownPl8.image} alt={ownPl8.username} />
                 </Link>
               </div>
