@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import { motion } from 'framer-motion'
 import Crack from '../../sounds/Crack.wav'
+import Crack2 from '../../sounds/Crack2.wav'
 import Smash from '../../sounds/Smash.wav'
 
 const pageVariants = {
@@ -24,6 +25,7 @@ const pageTransition = {
 }
 
 export default function Home() {
+  const crackSounds = [Crack, Crack2]
   React.useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight)
   }, [])
@@ -33,13 +35,15 @@ export default function Home() {
 
   const handleClick = () => {
     const audio = document.getElementById('plateSound')
-    if (clicks + 1 !== 8) {
-      audio.src = Crack
+    if (clicks + 1 !== 8 ) {
+      audio.src = crackSounds[Math.round(Math.random())]
     } else {
       audio.src = Smash
     }
     audio.volume = 0.1
-    audio.play()
+    if (clicks <= 8) {
+      audio.play()
+    }
     setGrow(true)
     setClicks(clicks + 1)
   }
