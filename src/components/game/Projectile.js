@@ -1,15 +1,20 @@
-export default function Projectile() {
+import { useEffect } from 'react'
 
-  const drag = () => {
-    console.log('dragging')
-  }
-
-  const handleClick = (event) => {
-    console.log('click')
-  }
+export default function Projectile({ handleCatch, handleSmash, xPosition, yPosition, height, width }) {
+  console.log(height)
+  console.log(yPosition)
+  useEffect(() => {
+    if (xPosition / 100 > (width - 100) / width || (yPosition <= 0 && xPosition > 50)) {
+      handleSmash()
+    }
+  }, [xPosition, yPosition])
 
   return (
-    <div onClick={handleClick} className="projectile" draggable="true" onDragStart={drag}>
+    <div 
+      onClick={handleCatch} 
+      className="projectile"
+      style={ { marginLeft: xPosition + '%', marginTop: 50 - yPosition + '%' } }
+    >
       <div className="inner">
       </div>
     </div>
