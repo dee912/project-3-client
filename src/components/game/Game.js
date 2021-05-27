@@ -23,7 +23,7 @@ function reducer(state, action) {
       yStart: newYStart,
       time: 0,
       gravity: 0.25,
-      xStartingVelocity: 2,
+      xStartingVelocity: 3,
       yStartingVelocity: Math.random() + 4.2,
     }
   } else {
@@ -42,7 +42,7 @@ export default function Game() {
       yStart: 0,
       time: 0,
       gravity: 0.25,
-      xStartingVelocity: 2,
+      xStartingVelocity: 3,
       yStartingVelocity: Math.random() + 4.2,
     }
   )
@@ -79,8 +79,12 @@ export default function Game() {
   }
 
   const gameScreen = useCallback(node => {
-    setHeight(node.getBoundingClientRect().height)
-    setWidth(node.getBoundingClientRect().width)
+    try {
+      setHeight(node.getBoundingClientRect().height)
+      setWidth(node.getBoundingClientRect().width)
+    } catch (err) {
+      console.log(err)
+    }
   }, [])
 
   return (
