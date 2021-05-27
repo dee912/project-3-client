@@ -3,7 +3,7 @@ import { editPl8 } from '../../lib/api'
 import Pl8Form from './Pl8Form'
 
 export default function Pl8Edit({ name, description, origin, prepTime, cookTime, ingredients, recipe, image, toggleEdit, _id }) {
-  const { formdata, formErrors, handleChange, setFormErrors } = useForm({
+  const { formdata, handleChange } = useForm({
     name: name,
     origin: origin,
     description: description,
@@ -12,6 +12,17 @@ export default function Pl8Edit({ name, description, origin, prepTime, cookTime,
     prepTime: prepTime,
     cookTime: cookTime,
     image: image,
+  })
+
+  const { formErrors, setFormErrors } = useForm({
+    name: '',
+    origin: '',
+    description: '',
+    ingredients: [],
+    recipe: [''],
+    prepTime: 0,
+    cookTime: 0,
+    image: '',
   })
 
   const handleSubmit = async () => {
@@ -23,6 +34,7 @@ export default function Pl8Edit({ name, description, origin, prepTime, cookTime,
       console.log(err)
     }
   }
+  console.log(formErrors)
 
   return (
     <Pl8Form
