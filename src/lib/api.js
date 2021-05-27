@@ -72,3 +72,11 @@ export function editComment(pl8Id, comment, commentId) {
 export function deleteComment(pl8Id, commentId) {
   return axios.delete(`${baseUrl}/pl8/${pl8Id}/comment/${commentId}`, headers())
 }
+
+export function addNewM8(idToAdd) {
+  return axios.post(`${baseUrl}/m8/add`, idToAdd, headers())
+}
+
+export function removeM8(id) {
+  return axios.delete(`${baseUrl}/m8/remove/${id}`, headers())
+}

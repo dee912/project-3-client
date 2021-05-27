@@ -402,12 +402,26 @@ textarea {
     }
   }
 }
-.addM8{
+.addM8 , .removeM8{
   position: absolute;
   top: 80px;
   right: 5px;
   background-color: lightskyblue;
   font-size: 20px;
 }
+.removeM8 {
+  background-color: red;
+}
 
+.m8Remover {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    position: relative;
+    top: 20px;
+    background-color: red;
+    color: whitesmoke;
+  }
+}
 @import '~bulma/bulma.sass';
