@@ -77,7 +77,7 @@ export default function PL8Show() {
       }
     }
     getData()
-  }, [pl8Id, deleted, edit])
+  }, [pl8Id, deleted, edit, m8Id])
 
   const handleInput = (e) => {
     setWrittenComment(e.target.value)
@@ -125,6 +125,7 @@ export default function PL8Show() {
       exit={{ opacity: 0 }}
     >
       <div className="showCard">
+        
         <div className="container">
           {pl8 && (
             <div className="columns">
@@ -139,7 +140,6 @@ export default function PL8Show() {
                   :
                   <Pl8Edit
                     { ...pl8 }
-                    isOwner={isOwner}
                     toggleEdit={toggleEdit}
                   />
                 }

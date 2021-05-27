@@ -66,11 +66,24 @@ export default function M8Show() {
         <div className="section">
           <div className="container">
             <div className="columns">
-              <ProfilePic {...m8} setEdit={setEdit} edit={edit} handleChange={handleChange} formdata={formdata} handleSave={handleSave} setFormdata={setFormdata}/>
+              <ProfilePic 
+                {...m8} 
+                setEdit={setEdit} 
+                edit={edit} 
+                handleChange={handleChange} 
+                formdata={formdata} 
+                handleSave={handleSave} 
+                setFormdata={setFormdata}
+              />
               {edit && isM8 && <button onClick={handleDelete}>Delete M8</button>}
               <div className="column is-7 is-offset-0">
-                <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange} />
-                <hr className="profileHr"/>
+                <ProfileBio 
+                  {...m8} 
+                  edit={edit} 
+                  formdata={formdata} 
+                  handleChange={handleChange} 
+                />
+                <hr />
                 <ProfileM8s formdata={formdata} />
               </div>
             </div>

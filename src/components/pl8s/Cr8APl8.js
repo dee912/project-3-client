@@ -1,8 +1,6 @@
 import { useHistory } from 'react-router-dom'
-import { nanoid } from 'nanoid'
 import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
-import { useState } from 'react'
 import Pl8Form from './Pl8Form'
 import { motion } from 'framer-motion'
 
