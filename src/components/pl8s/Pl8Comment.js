@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { deleteComment, editComment, m8Profile } from '../../lib/api'
 import { isOwner } from '../../lib/auth'
+import { motion } from 'framer-motion'
+
 
 export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdating, setDeleted }) {
   const [m8, setM8] = React.useState(null)
@@ -52,7 +54,11 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
   }
 
   return (
-    <div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
       {index < 2 && m8 &&
         <div className='commentLayout'>
           <Link to={`/m8/${comment.m8._id}`} className='commentImage'>
@@ -82,6 +88,6 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
             <button onClick={submitDelete}>Delete</button>
           </div>
         </div>}
-    </div>
+    </motion.div>
   )
 }

@@ -4,6 +4,8 @@ import useForm from '../../hooks/useForm'
 import { cr8APl8 } from '../../lib/api'
 import { useState } from 'react'
 import Pl8Form from './Pl8Form'
+import { motion } from 'framer-motion'
+
 
 export default function Cr8APl8() {
   const history = useHistory()
@@ -33,20 +35,27 @@ export default function Cr8APl8() {
   console.log(formdata)
 
   return (
-    <section className="section">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-half is-offset-one-quarter box">
-            <Pl8Form
-              formdata={formdata}
-              formErrors={formErrors}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              setFormErrors={setFormErrors}
-            />
+    <motion.div  
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
+      <section className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-half is-offset-one-quarter box">
+              <Pl8Form
+                formdata={formdata}
+                formErrors={formErrors}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                setFormErrors={setFormErrors}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      
+    </motion.div>
   )
 }

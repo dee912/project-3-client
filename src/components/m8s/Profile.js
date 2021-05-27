@@ -8,6 +8,7 @@ import ProfileM8s from './ProfileM8s'
 import ProfileM8sPl8s from './ProfileM8sPl8s'
 import ProfilePic from './ProfilePic'
 import ProfilePl8s from './ProfilePl8s'
+import { motion } from 'framer-motion'
 
 export default function M8Show() {
   const history = useHistory()
@@ -55,8 +56,13 @@ export default function M8Show() {
   }
 
   return (
-    <section>
-      { m8 &&
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
+      <section className="profilePage">
+        { m8 &&
         <div className="section">
           <div className="container">
             <div className="columns">
@@ -64,18 +70,19 @@ export default function M8Show() {
               {edit && isM8 && <button onClick={handleDelete}>Delete M8</button>}
               <div className="column is-7 is-offset-0">
                 <ProfileBio {...m8} edit={edit} formdata={formdata} handleChange={handleChange} />
-                <hr />
+                <hr className="profileHr"/>
                 <ProfileM8s formdata={formdata} />
               </div>
             </div>
-            <hr />
+            <hr className="profileHr"/>
             <ProfilePl8s {...m8} />
-            <hr />
+            <hr className="profileHr"/>
             <ProfileM8sPl8s {...m8} />
           </div>
           {isAuthenticated() && !isOwner(m8._id) && <button className='addM8'>Add M8</button>}
         </div>
-      }
-    </section>
+        }
+      </section>
+    </motion.div>
   )
 }
