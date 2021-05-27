@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { motion } from 'framer-motion'
-import After from '../../sounds/after.wav'
+import Crack from '../../sounds/Crack.wav'
+import Smash from '../../sounds/Smash.wav'
 
 const pageVariants = {
   initial: {
@@ -32,7 +33,12 @@ export default function Home() {
 
   const handleClick = () => {
     const audio = document.getElementById('plateSound')
-    audio.volume = 0.2
+    if (clicks + 1 !== 8) {
+      audio.src = Crack
+    } else {
+      audio.src = Smash
+    }
+    audio.volume = 0.1
     audio.play()
     setGrow(true)
     setClicks(clicks + 1)
@@ -46,7 +52,7 @@ export default function Home() {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <audio src={After} id='plateSound'/>
+      <audio id='plateSound'/>
       <div className='background'>
         <div className='home'>
           <h1 className='noSelect'>R8 MY PL8 M8</h1>

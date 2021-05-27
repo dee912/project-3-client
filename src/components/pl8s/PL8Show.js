@@ -141,9 +141,9 @@ export default function PL8Show() {
                 }
               </div>
               <div className="column is-quarter">
-                <divc className="cardProfile">
+                <div className="cardProfile">
                   <img className='showImage' src={pl8.image} alt={pl8.name} />
-                </divc>
+                </div>
                 
                 <br />
                 <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
