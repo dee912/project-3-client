@@ -23,22 +23,19 @@ export default function PL8Index() {
     setSearchTerm(e.target.value)
   }
 
-  console.log('index:', pl8s && pl8s)
-  
-
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1  }} 
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <div className="cardIndex">
         <div className="container">
-          <input 
-            className="input is-rounded" 
-            type="text" 
-            placeholder="Find pl8s" 
-            onChange={handleChange} 
+          <input
+            className="input is-rounded"
+            type="text"
+            placeholder="Find pl8s"
+            onChange={handleChange}
           />
           <div className="index">
             {pl8s && pl8s.filter((pl8) => {
@@ -48,17 +45,15 @@ export default function PL8Index() {
                 return pl8
               }
             }).map(pl8 => (
-              <>
-                <PL8Card
-                  key={pl8._id}
-                  {...pl8}
-                />
-              </>
+              <PL8Card
+                key={pl8._id}
+                {...pl8}
+              />
             ))}
           </div>
         </div>
       </div>
-      
+
     </motion.div>
   )
 }
