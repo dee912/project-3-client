@@ -2,7 +2,7 @@ export default function ProfileBio({ highScore,formdata, edit, handleChange }) {
   return (
     <div>
       <div className="media-content">
-        <p className="title is-4">{formdata.username}&apos;s bio</p>
+        <h3 className="title is-4">{formdata.username}&apos;s bio</h3>
       </div>
       <br/>
       <div className="media-content">
@@ -11,7 +11,7 @@ export default function ProfileBio({ highScore,formdata, edit, handleChange }) {
       </div>
       <hr className="profileHr"/>
       <div className="media-content">
-        <p className="title is-4">Throw a pl8 Highscore</p>
+        <h3 className="title is-4">Throw a pl8 Highscore</h3>
       </div>
       <br/>
       <div className="media-content">
