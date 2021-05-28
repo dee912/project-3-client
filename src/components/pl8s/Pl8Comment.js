@@ -61,8 +61,8 @@ export default function Pl8Comment({ comment, index, pl8Id, updating, setUpdatin
     >
       {index < 2 && m8 &&
         <div className='commentLayout'>
-          <Link to={`/m8/${comment.m8._id}`} className='commentImage'>
-            <img src={m8.avatar} alt={m8.username} />
+          <Link to={comment.m8.deleted ? '#' : `/m8/${comment.m8._id}`} className='commentImage'>
+            <img src={m8.deleted ? 'https://i.stack.imgur.com/l60Hf.png' : m8.avatar} alt={m8.username} />
           </Link>
           <p>{comment.text}</p>
           <div>
