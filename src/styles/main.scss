@@ -385,6 +385,7 @@ textarea {
 }
 
 .commentPopUp {
+  animation: fadeIn 1s;
   background-color: rgba(211, 211, 211, 0.8);
   position: fixed;
   height: 50%;
@@ -426,11 +427,38 @@ textarea {
 }
 
 .commentsPage {
+  background: url(https://images.squarespace-cdn.com/content/v1/5463df57e4b05c41e0cdd600/1439492263995-ADPX7TVR1SA5VUEFOWAS/ke17ZwdGBToddI8pDm48kOvSl7uZBiJvhHNx8kGuj7N7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQJVLCXI9FCYomYbws-y-45T4YLCF5qkYPw7Lwwtgtn6_Pu309TggK9CQbI7GxGOBQ/image-asset.jpeg?format=2500w),
+  linear-gradient(rgb(255, 255, 255), transparent),
+  linear-gradient(to top, rgb(255, 255, 255), transparent);
+  background-blend-mode: screen;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  h3, h1, a, p, small {
+    font-family: 'Open Sans', sans-serif;
+  }
+  button {
+    background-color: rgba(0, 0, 255, 0);
+    border: 1px solid rgb(68, 68, 67);
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    font-size: 18px;
+    color: rgb(68, 68, 67);
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
+  }
+  button:hover {
+    background-color: rgba(165, 42, 42, 0.5);
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  
   .topDisplay {
     display: flex;
     flex-direction: column;
@@ -442,6 +470,7 @@ textarea {
     }
     img{
       max-width: 20%;
+      box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, .9);
     }
     hr {
       width: 90%;
@@ -457,7 +486,6 @@ textarea {
       margin: 15px 0;
       width: 45%;
       display: flex;
-      border: 1px solid black;
       .whoPosted {
         height: 200px;
         width: 20%;
@@ -473,6 +501,8 @@ textarea {
           justify-content: space-around;
           height: 70%;
           width: 80%;
+          color: brown;
+          font-style: italic;
           .imageLink {
             border: 1px solid black;
             border-radius: 50%;
@@ -499,6 +529,9 @@ textarea {
         width: 10%;
         height: 100%;
         align-items: center;
+        button {
+          margin: 0;
+        }
       }
     }
   }
