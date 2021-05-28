@@ -1,10 +1,13 @@
 import { useEffect } from 'react'
 
-export default function Projectile({ handleCatch, handleSmash, xPosition, yPosition, height, width }) {
-  console.log(height)
-  console.log(yPosition)
+export default function Projectile({ handleCatch, handleSmash, xPosition, yPosition, height, width, falling }) {
+  const xPixels = (xPosition * width / 100)
+  const yPixels = height - (yPosition * height / 100)
+
+  console.log(falling)
+
   useEffect(() => {
-    if (xPosition / 100 > (width - 100) / width || (yPosition <= 0 && xPosition > 50)) {
+    if (falling && (xPixels < 0 || xPixels > width - 100 || yPixels > height)) {
       handleSmash()
     }
   }, [xPosition, yPosition])
@@ -13,10 +16,11 @@ export default function Projectile({ handleCatch, handleSmash, xPosition, yPosit
     <div 
       onClick={handleCatch} 
       className="projectile"
-      style={ { marginLeft: xPosition + '%', marginTop: 50 - yPosition + '%' } }
+      style={ { position: 'relative', left: `${xPixels}px`, top: `${yPixels - 100}px` } }
     >
       <div className="inner">
       </div>
     </div>
+    
   )
 }
