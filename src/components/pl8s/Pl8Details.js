@@ -4,14 +4,14 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
   return (
     <>
       <h1 className="title is-1">{name}</h1>
-      <h3 className="title is-3">Description:</h3>
+      <h2 className="title is-3">Description:</h2>
       <p>{description}</p>
       <hr />
-      <h3 className="title is-3">R8ing: {r8ings.length > 0 ?
+      <h2 className="title is-3">R8ing: {r8ings.length > 0 ?
         <span>{meanR8ing} outta 8</span>
         :
         <span>No r8ings yet</span>
-      }</h3>
+      }</h2>
       <select
         onChange={handleR8ing}
       >
@@ -23,24 +23,24 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
         ))}
       </select>
       <hr />
-      <h3 className="title is-3">Origin:</h3>
+      <h2 className="title is-3">Origin:</h2>
       <p>{origin}</p>
       <hr />
-      <h5 className="title is-5">Prep Time: {prepTime}</h5>
-      <h5 className="title is-5">Cook Time: {cookTime}</h5>
-      <ul><h3 className="title is-3">Ingredients:</h3>
+      <h3 className="title is-5">Prep Time: {prepTime}</h3>
+      <h3 className="title is-5">Cook Time: {cookTime}</h3>
+      <ul><h2 className="title is-3">Ingredients:</h2>
         {ingredients.map(ingredient => (
           <li key={ingredient}>{ingredient}</li>
         ))}
       </ul>
       <hr />
-      <ol><h3 className="title is-3">Recipe:</h3>
+      <ol><h2 className="title is-3">Recipe:</h2>
         {recipe.map(step => (
           <li key={step}>{step}</li>
         ))}
       </ol>
       <hr />
-      <h3 className="title is-3">Pl8 Maker:</h3>
+      <h2 className="title is-3">Pl8 Maker:</h2>
       <Link to={`/m8/${m8._id}`}>{m8.username}</Link>
       <hr />
     </>

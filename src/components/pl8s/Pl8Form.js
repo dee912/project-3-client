@@ -96,7 +96,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
             value={step}
           />
         ))}
-        <button className="button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
+        <button className="button edit-button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
       </div>
       <div className="field">
         <label className="label">Prep Time (minutes)</label>
@@ -125,7 +125,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
       <div className="field">
         <ImageUpload onUpload={handleImageUpload} />
       </div>
-      <button className="button is-fullwidth" onClick={handleSubmit}>Submit</button>
+      <button className="button" onClick={handleSubmit}>Submit</button>
     </form>
   )
 }

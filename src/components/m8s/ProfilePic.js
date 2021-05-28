@@ -8,7 +8,7 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
   }
 
   return (
-    <div className="column is-5 is-offset-0">
+    <div className="column profile-pic">
       <div className="card">
         <div className="card-image">
           <div className="card-content">

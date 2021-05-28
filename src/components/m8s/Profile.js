@@ -96,7 +96,7 @@ export default function M8Show() {
         { m8 &&
         <div className="section">
           <div className="container">
-            <div className="columns">
+            <div className="profile-top">
               <ProfilePic 
                 {...m8} 
                 setEdit={setEdit} 
@@ -107,21 +107,26 @@ export default function M8Show() {
                 setFormdata={setFormdata}
               />
               {edit && isM8 && <button onClick={handleDelete}>Delete M8</button>}
-              <div className="column is-7 is-offset-0">
-                <ProfileBio 
-                  {...m8} 
-                  edit={edit} 
-                  formdata={formdata} 
-                  handleChange={handleChange} 
-                />
-                <hr />
-                <ProfileM8s formdata={formdata} m8s={m8.m8s} setM8={setM8}/>
+              <div className="bio-section">
+                <div className="column is-7 is-offset-0">
+                  <ProfileBio 
+                    {...m8} 
+                    edit={edit} 
+                    formdata={formdata} 
+                    handleChange={handleChange} 
+                  />
+                  <hr />
+                  <ProfileM8s formdata={formdata} m8s={m8.m8s} setM8={setM8}/>
+                </div>
               </div>
             </div>
-            <hr className="profileHr"/>
-            <ProfilePl8s {...m8} />
-            <hr className="profileHr"/>
-            <ProfileM8sPl8s {...m8} />
+            <div className="profile-bottom">
+              <hr className="profileHr"/>
+              <ProfilePl8s {...m8} />
+              <hr className="profileHr"/>
+              <ProfileM8sPl8s {...m8} />
+            </div>
+            
           </div>
           {isAuthenticated() && !isOwner(m8._id) && !alreadyAdded && <button className='addM8' onClick={addM8}>Add M8</button>}
           {isAuthenticated() && !isOwner(m8._id) && alreadyAdded && <button className='removeM8' onClick={removingM8}>Remove M8</button>}

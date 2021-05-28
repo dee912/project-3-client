@@ -57,7 +57,7 @@ export default function Home() {
       transition={pageTransition}
     >
       <audio id='plateSound'/>
-      <div className='background'>
+      <div className='homeBackground'>
         <div className='home'>
           <h1 className='noSelect'>R8 MY PL8 M8</h1>
           <svg width="100" height="100" fill='none' stroke='black' xmlns="http://www.w3.org/2000/svg" onClick={handleClick} onTransitionEnd={() => setGrow(false)} className={`plate ${grow ? 'grow' : ''} ${clicks >= 8 ? 'exploded' : ''}`}>

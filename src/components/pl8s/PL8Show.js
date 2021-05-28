@@ -115,7 +115,6 @@ export default function PL8Show() {
       exit={{ opacity: 0 }}
     >
       <div className="showCard">
-        
         <div className="container">
           {pl8 && (
             <div className="columns">
@@ -146,7 +145,7 @@ export default function PL8Show() {
                 </div>
                 
                 <br />
-                <h3 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h3>
+                <h2 className='title is-3 commentTitle'>Comments {isAuthenticated() && <button onClick={allowUpdating}>Add Comment</button>}</h2>
                 <hr />
                 {pl8.comments.map((comment, index) => (
                   <div key={comment._id}>
@@ -164,7 +163,7 @@ export default function PL8Show() {
           )}
           {commentToAdd &&
         <div className='commentPopUp'>
-          <h1>Add a Comment</h1>
+          <h2>Add a Comment</h2>
           <div className='enterText'>
             <textarea 
               maxLength='150' 
