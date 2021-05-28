@@ -33,7 +33,7 @@ function reducer(state, action) {
       gravity: 0.25,
       xStartingVelocity: (Math.random() + 0.5) * -(((newXStart + 10) / 110 * 8) - 3),
       yStartingVelocity: (Math.random() * 2) + 4.6,
-      falling: newXStart > 0 || newXStart < 100,
+      falling: newXStart > 10 && newXStart < 90,
     }
   } else {
     return state
