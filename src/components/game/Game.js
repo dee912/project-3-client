@@ -1,5 +1,6 @@
 import { useState, useEffect, useReducer, useCallback } from 'react'
 import Projectile from './Projectile'
+import smash from '../../sounds/Smash.wav'
 
 
 function reducer(state, action) {
@@ -35,6 +36,10 @@ function reducer(state, action) {
       yStartingVelocity: (Math.random() * 2) + 4.6,
       falling: newXStart > 10 && newXStart < 90,
     }
+  } else if (action.type === 'smash') {
+    return {
+      ...state,
+    }
   } else {
     return state
   }
@@ -62,12 +67,15 @@ export default function Game() {
   const [platesSmashed, setPlatesSmashed] = useState(0)
   const [height, setHeight] = useState(null)
   const [width, setWidth] = useState(null)
+  const [smashed, setSmashed] = useState(false)
   
   useEffect(() => {
     clearInterval(intervalId)
-    setIntervalId(setInterval(() => {
-      dispatch({ type: 'ballisticFlight' })  
-    }, 10))
+    if (!smashed) {
+      setIntervalId(setInterval(() => {
+        dispatch({ type: 'ballisticFlight' })  
+      }, 10))
+    }
   }, [platesCaught, platesSmashed])
 
   const newProjectile = () => {
@@ -82,11 +90,24 @@ export default function Game() {
 
   const handleSmash = () => {
     setPlatesSmashed(platesSmashed + 1)
-    newProjectile()
+    setSmashed(true)
+    clearInterval(intervalId)
+    dispatch({ type: 'smashed' })
+    const audio = document.getElementById('smash')
+    audio.src = smash
+    audio.play()
+    setTimeout(() => {
+      setIsPlaying(false)
+    }, 1000)
   }
 
   const startGame = () => {
+    setSmashed(false)
     setIsPlaying(true)
+    newProjectile()
+    setPlatesCaught(0)
+    setPlatesSmashed(0)
+
   }
 
   const gameScreen = useCallback(node => {
@@ -103,7 +124,9 @@ export default function Game() {
       {isPlaying ? 
         <>
           <div className="game" ref={gameScreen}>
+            <audio id="smash"/>
             <Projectile 
+              className="projectile"
               handleCatch={handleCatch}
               handleSmash={handleSmash}
               xPosition={state.xPosition}
@@ -111,6 +134,7 @@ export default function Game() {
               height={height}
               width={width}
               falling={state.falling}
+              smashed={smashed}
             />
           </div>
           <h1>Plates Caught: {platesCaught}        Plates Smashed: {platesSmashed}</h1>
