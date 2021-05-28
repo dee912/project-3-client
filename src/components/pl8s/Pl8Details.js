@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export default function Pl8Details({ name, description, r8ings, meanR8ing, handleR8ing, r8ingOptions, origin, prepTime, cookTime, ingredients, recipe, m8 }) {
+  console.log(m8)
   return (
     <>
       <h1 className="title is-1">{name}</h1>
@@ -41,7 +42,7 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
       </ol>
       <hr />
       <h3 className="title is-3">Pl8 Maker:</h3>
-      <Link to={`/m8/${m8._id}`}>{m8.username}</Link>
+      <Link to={ m8.deleted ? '#' : `/m8/${m8._id}`}>{m8.deleted ? 'M8 is no longer with us' : m8.username}</Link>
       <hr />
     </>
   )
