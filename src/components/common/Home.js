@@ -35,6 +35,7 @@ export default function Home() {
 
   const handleClick = () => {
     const audio = document.getElementById('plateSound')
+    audio.pause()
     if (clicks + 1 !== 8 ) {
       audio.src = crackSounds[Math.round(Math.random())]
     } else {
@@ -42,6 +43,7 @@ export default function Home() {
     }
     audio.volume = 0.1
     if (clicks <= 8) {
+      
       audio.play()
     }
     setGrow(true)
@@ -90,7 +92,7 @@ export default function Home() {
               <path className={clicks < 8 ? 'crack' : ''} d="M 50 0 L 40  20 L 55 30 L 50 35 L 50 50" />
             </g>
           </svg>
-          {clicks >= 8 && <button className='toPl8s' onClick={() => history.push('/pl8s')}>View Pl8s 🍽</button>}
+          {clicks >= 8 && <button className='toPl8s noSelect' onClick={() => history.push('/pl8s')}>View Pl8s 🍽</button>}
         </div>
       </div>
     </motion.div>

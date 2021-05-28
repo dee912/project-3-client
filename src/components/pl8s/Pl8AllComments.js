@@ -83,9 +83,9 @@ export default function Pl8AllComments() {
             {pl8.comments.map(comment => {
               return (<div key={comment._id} className='fullComment'>
                 <div className='whoPosted'>
-                  <Link to={`/m8/${comment.m8._id}`} className='link'>
-                    <img src={comment.m8.avatar} className='imageLink' />
-                    <h3>{comment.m8.username}</h3>
+                  <Link to={comment.m8.deleted ? '#' : `/m8/${comment.m8._id}`} className='link'>
+                    <img src={comment.m8.deleted ? 'https://i.stack.imgur.com/l60Hf.png' : comment.m8.avatar} className='imageLink' />
+                    <h3>{comment.m8.deleted ? 'Mystery M8' : comment.m8.username}</h3>
                   </Link>
                   <small>Last Updated: {lastUpdated(comment.updatedAt)}</small>
                 </div>
