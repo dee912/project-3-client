@@ -29,7 +29,7 @@ export default function Register() {
       }
       history.push('/login')
     } catch (err) {
-      setFormErrors(err.response.data.formErrors)
+      setFormErrors({ ...formErrors, ...err.response.data })
     }
   }
 
