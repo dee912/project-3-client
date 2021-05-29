@@ -18,6 +18,7 @@ export default function M8Show() {
   const [isM8, setIsM8] = useState(false)
   const [userM8, setUserM8] = useState(getPayload())
   const [alreadyAdded, setAlreadyAdded] = useState(false)
+  const [nameTaken, setNameTaken] = useState({ username: '' })
   const { formdata, setFormdata, handleChange } = useForm({
     username: '',
     avatar: '',
@@ -55,7 +56,7 @@ export default function M8Show() {
     try {
       await editM8(m8Id, formdata)
     } catch (error) {
-      console.log(error)
+      setNameTaken({ ...nameTaken, ...error.response.data })
       setFormdata({ ...m8 })
     }
   }
@@ -105,6 +106,8 @@ export default function M8Show() {
                 formdata={formdata} 
                 handleSave={handleSave} 
                 setFormdata={setFormdata}
+                nameTaken={nameTaken}
+                setNameTaken={setNameTaken}
               />
               {edit && isM8 && <button onClick={handleDelete}>Delete M8</button>}
               <div className="column is-7 is-offset-0">
