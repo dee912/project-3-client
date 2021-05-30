@@ -41,9 +41,8 @@ export default function Register() {
     >
       <section className="section">
         <div className="container">
-          <div className="columns">
+          <div className="form">
             <form
-              className="column is-half is-offset-one-quarter box"
               onSubmit={handleSubmit}
             >
               <div className="field">
@@ -109,7 +108,9 @@ export default function Register() {
                 )}
               </div>
               <div className="field">
-                <ImageUpload onUpload={handleImageUpload} />
+                <ImageUpload 
+                  onUpload={handleImageUpload} 
+                />
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">

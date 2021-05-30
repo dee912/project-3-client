@@ -46,39 +46,36 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
           {formErrors.name && <p className="help is-danger">{formErrors.name}</p>}
         </div>
       </div>
-      
+
       <div className="field">
         <label className="label">Origin</label>
-        <div className="control">
-          <input
-            className={`input ${formErrors.name ? 'is-danger' : ''}`}
-            placeholder="Origin"
-            name="origin"
-            onChange={handleChange}
-            value={formdata.origin}
-          />
-          {formErrors.origin && <p className="help is-danger">{formErrors.origin}</p>}
-        </div>
+        <input
+          className={`input ${formErrors.name ? 'is-danger' : ''}`}
+          placeholder="Origin"
+          name="origin"
+          onChange={handleChange}
+          value={formdata.origin}
+        />
+        {formErrors.origin && <p className="help is-danger">{formErrors.origin}</p>}
       </div>
       <div className="field">
         <label className="label">Description</label>
-        <div className="control">
-          <input
-            className={`input ${formErrors.name ? 'is-danger' : ''}`}
-            placeholder="Description"
-            name="description"
-            onChange={handleChange}
-            value={formdata.description}
-          />
-          {formErrors.description && <p className="help is-danger">{formErrors.description}</p>}
-        </div>
+        <input
+          className={`input ${formErrors.name ? 'is-danger' : ''}`}
+          placeholder="Description"
+          name="description"
+          onChange={handleChange}
+          value={formdata.description}
+        />
+        {formErrors.description && <p className="help is-danger">{formErrors.description}</p>}
       </div>
       <div className="field">
         <label className="label">Ingredients</label>
-        <CreatableSelect 
+        <CreatableSelect
           isMulti
+          className="multi-select"
           name="ingredients"
-          onChange={selected => 
+          onChange={selected =>
             handleMultiSelectChange(selected, 'ingredients')
           }
           value={formdata.ingredients.map(ingredient => ({ label: ingredient[0].toUpperCase() + ingredient.substring(1), value: ingredient }))}
@@ -98,9 +95,9 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
         ))}
         <button className="button edit-button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
       </div>
-      <div className="field">
-        <label className="label">Prep Time (minutes)</label>
-        <div className="control">
+      <div className="times">
+        <div className="field">
+          <label className="label">Prep Time (minutes)</label>
           <input
             type="number"
             name="prepTime"
@@ -109,10 +106,8 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
             value={formdata.prepTime}
           />
         </div>
-      </div>
-      <div className="field">
-        <label className="label">Cook Time (minutes)</label>
-        <div className="control">
+        <div className="field">
+          <label className="label">Cook Time (minutes)</label>
           <input
             type="number"
             name="cookTime"
@@ -122,9 +117,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
           />
         </div>
       </div>
-      <div className="field">
-        <ImageUpload onUpload={handleImageUpload} />
-      </div>
+      <ImageUpload onUpload={handleImageUpload} />
       <button className="button" onClick={handleSubmit}>Submit</button>
     </form>
   )

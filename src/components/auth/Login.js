@@ -33,9 +33,8 @@ export default function Login() {
     >
       <section className="section">
         <div className="container">
-          <div className="columns">
+          <div className="form">
             <form
-              className="column is-half is-offset-one-quarter"
               onSubmit={handleSubmit}  
             >
               <div className="field">
