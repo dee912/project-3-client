@@ -191,8 +191,15 @@ body {
 
 .game-page{
   z-index: 999;
-  background-color: #a8a8a8;
+  background-color: #03715b;
+  font-family: $font-cursive;
+  text-align: center;
   @include center-horizontally;
+  padding: 100px;
+  .button {
+    @include button($background-color: rgba(0, 0, 0, 1));
+    justify-self: center;
+  }
   .game-screen {
     width: 800px;
     height: 600px;

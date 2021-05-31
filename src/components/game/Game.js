@@ -10,7 +10,7 @@ function reducer(state, action) {
     const yPosition = (-0.5 * state.gravity * (time ** 2)) + (state.yStartingVelocity * time) + state.yStart
     let falling = true 
     if (!state.falling) {
-      falling = 10 < state.yPosition
+      falling = 30 < state.yPosition
     }
     
     yPosition < state.yPosition
@@ -64,7 +64,6 @@ export default function Game() {
   const [isPlaying, setIsPlaying] = useState(true)
   const [intervalId, setIntervalId] = useState(0)
   const [platesCaught, setPlatesCaught] = useState(0)
-  const [platesSmashed, setPlatesSmashed] = useState(0)
   const [height, setHeight] = useState(null)
   const [width, setWidth] = useState(null)
   const [smashed, setSmashed] = useState(false)
@@ -76,7 +75,7 @@ export default function Game() {
         dispatch({ type: 'ballisticFlight' })  
       }, 10))
     }
-  }, [platesCaught, platesSmashed])
+  }, [platesCaught])
 
   const newProjectile = () => {
     console.log('new')
@@ -84,12 +83,12 @@ export default function Game() {
   }
 
   const handleCatch = () => {
+    if (smashed) return
     setPlatesCaught(platesCaught + 1)
     newProjectile()
   }
 
   const handleSmash = () => {
-    setPlatesSmashed(platesSmashed + 1)
     setSmashed(true)
     clearInterval(intervalId)
     dispatch({ type: 'smashed' })
@@ -106,8 +105,6 @@ export default function Game() {
     setIsPlaying(true)
     newProjectile()
     setPlatesCaught(0)
-    setPlatesSmashed(0)
-
   }
 
   const gameScreen = useCallback(node => {
@@ -137,10 +134,13 @@ export default function Game() {
               smashed={smashed}
             />
           </div>
-          <h1>Plates Caught: {platesCaught}        Plates Smashed: {platesSmashed}</h1>
+          <h1>Plates Caught: {platesCaught}</h1>
         </>
         :
-        <button onClick={startGame}>Play</button>
+        <div className="apres">
+          {smashed && <h1>You caught {platesCaught} plates</h1>}
+          <button className="button" onClick={startGame}>Play{smashed ? ' again' : ''}</button>
+        </div>
       }
     </div>
   )
