@@ -97,9 +97,10 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
       </div>
       <div className="times">
         <div className="field">
-          <label className="label">Prep Time (minutes)</label>
+          <label className="label">Prep Time</label>
           <input
             type="number"
+            placeholder="Minutes"
             name="prepTime"
             min={0}
             onChange={handleChange}
@@ -107,9 +108,10 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
           />
         </div>
         <div className="field">
-          <label className="label">Cook Time (minutes)</label>
+          <label className="label">Cook Time</label>
           <input
             type="number"
+            placeholder="Minutes"
             name="cookTime"
             min={0}
             onChange={handleChange}

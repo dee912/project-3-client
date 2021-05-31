@@ -5,6 +5,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+$font-sans: 'Open Sans', sans-serif;
+$font-cursive: 'Righteous', cursive;
 
 body {
   margin: 0;
@@ -13,7 +15,7 @@ body {
 .containerNav{
   overflow: hidden;
   background-color: rgba(114, 114, 114, 0.527);
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-sans;
   height: 50px;
   .navbar-item{
     float: left;
@@ -39,7 +41,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-size: 17px;
     height: 50px;
     width: 150px;
@@ -84,7 +86,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     font-size: 100px;
-    font-family: 'Righteous', cursive;
+    font-family: $font-cursive;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     color: rgb(151, 151, 151);
 }
@@ -132,7 +134,7 @@ body {
     text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     border: none;
     background: none;
-    font-family: 'Righteous', cursive;
+    font-family: $font-cursive;
   }
 }
 @keyframes fadeIn {
@@ -195,7 +197,7 @@ textarea {
     min-height: 100vh;
     padding: 0 100px;
   .title {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-weight: bold;
     color: rgb(68, 68, 67);
   }
@@ -212,7 +214,7 @@ textarea {
     border-radius: 30px;
     padding: 0px 10px;
     margin-top: 20px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-size: 15px;
     font-weight: bold;
     outline: none;
@@ -260,7 +262,7 @@ textarea {
     font-size: 40px;
   }
   h5, h3, h1, a, p, li, label {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
   }
   h5, h3, h1, label {
     color: rgb(68, 68, 67);
@@ -395,7 +397,7 @@ textarea {
     font-size: 40px;
   }
   h3, h2, h1, a, p, li, label {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
   }
   h3 {
     font-weight: bold;
@@ -417,7 +419,7 @@ textarea {
     border-radius: 5px;
   }
   select {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-weight: bolder;
     background-color: rgba(0, 0, 255, 0);
     border: 2px solid rgb(68, 68, 67);
@@ -434,7 +436,7 @@ textarea {
     cursor: pointer;
   }
   button {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-weight: bold;
     background-color: rgba(0, 0, 255, 0);
     border: 1px solid rgb(68, 68, 67);
@@ -732,7 +734,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-sans;
   width: 300px;
   .times {
     display: flex;
@@ -757,7 +759,7 @@ form {
     }
     .input {
       padding: 5px;
-      width: 100%;
+      width: 288px;
       border-radius: 5px;
       border: 1px solid #a8a8a8;
     }
@@ -766,14 +768,14 @@ form {
     }
   }
   button {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
     font-weight: bold;
     background-color: rgba(0, 0, 255, 0);
     border: 1px solid rgb(68, 68, 67);
     border-radius: 5px;
     width: 100%;
     height: 40px;
-    margin: 10px;
+    margin: 10px 0;
     font-size: 18px;
     color: rgb(68, 68, 67);
     box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
