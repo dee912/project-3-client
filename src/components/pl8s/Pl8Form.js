@@ -93,7 +93,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
             value={step}
           />
         ))}
-        <button className="button edit-button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
+        <button className="small-button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
       </div>
       <div className="times">
         <div className="field">

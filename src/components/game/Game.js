@@ -10,7 +10,7 @@ function reducer(state, action) {
     const yPosition = (-0.5 * state.gravity * (time ** 2)) + (state.yStartingVelocity * time) + state.yStart
     let falling = true 
     if (!state.falling) {
-      falling = yPosition < state.yPosition
+      falling = 10 < state.yPosition
     }
     
     yPosition < state.yPosition
@@ -34,7 +34,7 @@ function reducer(state, action) {
       gravity: 0.25,
       xStartingVelocity: (Math.random() + 0.5) * -(((newXStart + 10) / 110 * 8) - 3),
       yStartingVelocity: (Math.random() * 2) + 4.6,
-      falling: newXStart > 10 && newXStart < 90,
+      falling: false,
     }
   } else if (action.type === 'smash') {
     return {
@@ -120,10 +120,10 @@ export default function Game() {
   }, [])
 
   return (
-    <>
+    <div className="game-page">
       {isPlaying ? 
         <>
-          <div className="game" ref={gameScreen}>
+          <div className="game-screen" ref={gameScreen}>
             <audio id="smash"/>
             <Projectile 
               className="projectile"
@@ -142,6 +142,6 @@ export default function Game() {
         :
         <button onClick={startGame}>Play</button>
       }
-    </>
+    </div>
   )
 }
