@@ -3,8 +3,6 @@ import M8sCard from './M8sCard'
 
 export default function ProfileM8s({ formdata, m8s, setM8 }) {
 
-
-
   return (
     <section>
       <div className="media-content">
