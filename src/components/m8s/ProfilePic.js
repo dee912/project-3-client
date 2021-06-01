@@ -29,17 +29,15 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
               :
               <img src="https://www.ramw.org/sites/default/files/styles/content/public/default_images/default_0.jpg?itok=TlxjusRt" alt={formdata.username} />}
           </figure>
-        </div>
-      </div>
-      <div className="card">
-        <footer className="card-footer">
-          {isOwner(_id) && !edit && <button onClick={handleEdit} className="card-footer-item">Edit</button>}
-          {edit &&
+          <footer className="card-footer">
+            {isOwner(_id) && !edit && <button onClick={handleEdit} className="card-footer-item">Edit</button>}
+            {edit &&
             <div className="card-footer-item">
               <ImageUpload setFormdata={setFormdata} formdata={formdata}/>
               <button className='card-footer-item' onClick={handleSave}>Save Changes</button>
             </div>}
-        </footer>
+          </footer>
+        </div>
       </div>
     </div>
   )

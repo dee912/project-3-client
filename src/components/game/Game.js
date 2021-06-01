@@ -5,6 +5,7 @@ import { editM8, m8Profile } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
 
 
+import { motion } from 'framer-motion'
 
 function reducer(state, action) {
   if (action.type === 'ballisticFlight') {
@@ -131,31 +132,37 @@ export default function Game() {
   }, [])
 
   return (
-    <div className="game-page">
-      {isPlaying ? 
-        <>
-          <div className="game-screen" ref={gameScreen}>
-            <audio id="smash"/>
-            <Projectile 
-              className="projectile"
-              handleCatch={handleCatch}
-              handleSmash={handleSmash}
-              xPosition={state.xPosition}
-              yPosition={state.yPosition}
-              height={height}
-              width={width}
-              falling={state.falling}
-              smashed={smashed}
-            />
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
+      <div className="game-page">
+        {isPlaying ? 
+          <>
+            <div className="game-screen" ref={gameScreen}>
+              <audio id="smash"/>
+              <Projectile 
+                className="projectile"
+                handleCatch={handleCatch}
+                handleSmash={handleSmash}
+                xPosition={state.xPosition}
+                yPosition={state.yPosition}
+                height={height}
+                width={width}
+                falling={state.falling}
+                smashed={smashed}
+              />
+            </div>
+            <h1>Plates Caught: {platesCaught}</h1>
+          </>
+          :
+          <div className="apres">
+            {smashed && <h1>You caught {platesCaught} plates</h1>}
+            <button className="button" onClick={startGame}>Play{smashed ? ' again' : ''}</button>
           </div>
-          <h1>Plates Caught: {platesCaught}</h1>
-        </>
-        :
-        <div className="apres">
-          {smashed && <h1>You caught {platesCaught} plates</h1>}
-          <button className="button" onClick={startGame}>Play{smashed ? ' again' : ''}</button>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    </motion.div>
   )
 }
