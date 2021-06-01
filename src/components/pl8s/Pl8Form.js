@@ -60,7 +60,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
       </div>
       <div className="field">
         <label className="label">Description</label>
-        <input
+        <textarea
           className={`input ${formErrors.name ? 'invalid' : ''}`}
           placeholder="Description"
           name="description"
