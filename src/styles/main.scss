@@ -197,7 +197,7 @@ body {
   @include center-horizontally;
   padding: 100px;
   .button {
-    @include button($background-color: rgba(0, 0, 0, 1));
+    @include button;
     justify-self: center;
   }
   .container {
