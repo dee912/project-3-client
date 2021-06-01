@@ -142,6 +142,9 @@ export default function Game() {
   }
 
   const gameOverMessage = () => {
+    if (platesCaught === 69) {
+      return 'Nice.'
+    }
     const index = Math.floor(platesCaught / 10)
     return (gameOverMessages[index < gameOverMessages.length ? index : gameOverMessages.length - 1])
   }
