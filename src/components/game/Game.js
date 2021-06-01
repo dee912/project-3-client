@@ -85,7 +85,9 @@ export default function Game() {
       const { data } = await m8Profile(m8Id)
       setM8(data)
     }
-    getData()
+    if (!m8) {
+      getData()
+    }
   }, [platesCaught])
 
   const newProjectile = () => {
