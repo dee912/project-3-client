@@ -79,11 +79,11 @@ export default function Game() {
         dispatch({ type: 'ballisticFlight' })  
       }, 10))
     }
+    const getData = async () => {
+      const { data } = await m8Profile(m8Id)
+      setM8(data)
+    }
     if (!m8) {
-      const getData = async () => {
-        const { data } = await m8Profile(m8Id)
-        setM8(data)
-      }
       getData()
     }
   }, [platesCaught])
