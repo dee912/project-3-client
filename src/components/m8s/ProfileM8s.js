@@ -12,7 +12,7 @@ export default function ProfileM8s({ formdata, m8s, setM8 }) {
   return (
     <section>
       <div className="media-content">
-        <h3 className="username">{formdata.username}&apos;s m8s</h3>
+        <h2>{formdata.username}&apos;s m8s</h2>
       </div>
       <br />
       <div className="containerScroll">

@@ -37,37 +37,37 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
         <label className="label">PL8 name</label>
         <div className="control">
           <input
-            className={`input ${formErrors.name ? 'is-danger' : ''}`}
+            className={`input ${formErrors.name ? 'invalid' : ''}`}
             placeholder="PL8 name"
             name="name"
             onChange={handleChange}
             value={formdata.name}
           />
-          {formErrors.name && <p className="help is-danger">{formErrors.name}</p>}
+          {formErrors.name && <p className="help invalid">{formErrors.name}</p>}
         </div>
       </div>
 
       <div className="field">
         <label className="label">Origin</label>
         <input
-          className={`input ${formErrors.name ? 'is-danger' : ''}`}
+          className={`input ${formErrors.name ? 'invalid' : ''}`}
           placeholder="Origin"
           name="origin"
           onChange={handleChange}
           value={formdata.origin}
         />
-        {formErrors.origin && <p className="help is-danger">{formErrors.origin}</p>}
+        {formErrors.origin && <p className="help invalid">{formErrors.origin}</p>}
       </div>
       <div className="field">
         <label className="label">Description</label>
         <input
-          className={`input ${formErrors.name ? 'is-danger' : ''}`}
+          className={`input ${formErrors.name ? 'invalid' : ''}`}
           placeholder="Description"
           name="description"
           onChange={handleChange}
           value={formdata.description}
         />
-        {formErrors.description && <p className="help is-danger">{formErrors.description}</p>}
+        {formErrors.description && <p className="help invalid">{formErrors.description}</p>}
       </div>
       <div className="field">
         <label className="label">Ingredients</label>
@@ -80,6 +80,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
           }
           value={formdata.ingredients.map(ingredient => ({ label: ingredient[0].toUpperCase() + ingredient.substring(1), value: ingredient }))}
         />
+        {formErrors.ingredients && <p className="help invalid">{formErrors.ingredients}</p>}
       </div>
       <div className="field">
         <label className="label">Recipe</label>
@@ -93,6 +94,7 @@ export default function Pl8Form({ handleSubmit, formErrors, formdata, handleChan
             value={step}
           />
         ))}
+        {formErrors.recipe && <p className="help invalid">{formErrors.recipe}</p>}
         <button className="small-button" type="button" onClick={handleAddRecipeStepInput}>Add Step</button>
       </div>
       <div className="times">

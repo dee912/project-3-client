@@ -279,6 +279,13 @@ textarea {
     img {
       border-radius: 5px;
     }
+    button {
+    margin-left: 40px;
+    }
+  }
+  .username {
+    margin-left: 40px;
+    font-size: 25px;
   }
   .profile-pic {
     display: flex;
@@ -289,24 +296,23 @@ textarea {
   .bio-section {
     margin-left: 50px;
   }
-  .m8Remover {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    button {
-      position: relative;
-      top: 20px;
-      background-color: red;
-      color: whitesmoke;
-    }
+  .removeM8 {
+    width: 100px;
+    height: 50px;
+  }
+  .subtitle {
+    margin-bottom: 0;
+  }
+  .information {
+    margin-top: 0px; 
   }
   h1 {
     font-size: 40px;
   }
-  h5, h3, h1, a, p, li, label {
+  h5, h3, h2, h1, a, p, li, label {
     font-family: $font-sans;
   }
-  h5, h3, h1, label {
+  h5, h3, h2, h1, label {
     color: rgb(68, 68, 67);
   }
   h5 {
@@ -509,7 +515,7 @@ textarea {
   .commentImage{
     border: 1px solid black;
     border-radius: 50%;
-    height: 50%;
+    height: 40%;
     margin: 0 10px;
     width: 10%;
     img {
@@ -682,7 +688,8 @@ textarea {
           .imageLink {
             border: 1px solid black;
             border-radius: 50%;
-            height: 50%;
+            height: 40%;
+            margin: 0 10px;
           }
         }
         small {
