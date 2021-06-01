@@ -2,9 +2,10 @@ import { isOwner } from '../../lib/auth'
 import ImageUpload from './ImageUpdate'
 
 
-export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave, setFormdata }) {
+export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange, handleSave, setFormdata, nameTaken, setNameTaken }) {
   const handleEdit = () => {
     setEdit(true)
+    setNameTaken({ username: '' })
   }
 
   return (
@@ -17,6 +18,7 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
               </div>
               <div className="media-content">
                 {!edit && <h3 className="username">{formdata.username}</h3>}
+                <small className='invalid'>{nameTaken.username}</small>
                 {edit && <input className='title is-4' name='username' value={formdata.username} onChange={handleChange} />}
               </div>
             </div>

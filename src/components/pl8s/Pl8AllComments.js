@@ -4,6 +4,7 @@ import { editComment, getSinglePl8, deleteComment, addComment } from '../../lib/
 import { Link } from 'react-router-dom'
 import { isOwner } from '../../lib/auth'
 import { isAuthenticated } from '../../lib/auth'
+import { motion } from 'framer-motion'
 
 function lastUpdated(date) {
   const dateArray = date.split('T')
@@ -70,7 +71,11 @@ export default function Pl8AllComments() {
     }
   }
   return (
-    <>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }} 
+      exit={{ opacity: 0 }}
+    >
       {pl8 &&
         <div className='commentsPage'>
           <div className='topDisplay'>
@@ -85,7 +90,7 @@ export default function Pl8AllComments() {
                 <div className='whoPosted'>
                   <Link to={comment.m8.deleted ? '#' : `/m8/${comment.m8._id}`} className='link'>
                     <img src={comment.m8.deleted ? 'https://i.stack.imgur.com/l60Hf.png' : comment.m8.avatar} className='imageLink' />
-                    <h3>{comment.m8.deleted ? 'Mystery M8' : comment.m8.username}</h3>
+                    <h3 className='linkText'>{comment.m8.deleted ? 'Mystery M8' : comment.m8.username}</h3>
                   </Link>
                   <small>Last Updated: {lastUpdated(comment.updatedAt)}</small>
                 </div>
@@ -126,6 +131,6 @@ export default function Pl8AllComments() {
               </div>
             </div>}
         </div>}
-    </>
+    </motion.div>
   )
 }
