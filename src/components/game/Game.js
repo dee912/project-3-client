@@ -47,7 +47,6 @@ function reducer(state, action) {
   }
 }
 
-
 export default function Game() {
   const [state, dispatch] = useReducer(
     reducer,
