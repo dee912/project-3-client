@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer, useCallback } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import Projectile from './Projectile'
 import smash from '../../sounds/Smash.wav'
 import { motion } from 'framer-motion'
@@ -107,6 +107,9 @@ export default function Game() {
     setPlatesCaught(0)
   }
 
+  const gameOverMessage = () => {
+    
+  }
 
   return (
     <motion.div 
