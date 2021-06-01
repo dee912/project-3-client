@@ -4,8 +4,6 @@ export default function Projectile({ handleCatch, handleSmash, xPosition, yPosit
   const xPixels = (xPosition * 8)
   const yPixels = 600 - (yPosition * 6)
 
-  console.log(smashed)
-
   useEffect(() => {
     if (falling && (xPixels < 0 || xPixels > 700 || yPixels > 600)) {
       handleSmash()

@@ -2,8 +2,31 @@ import { useState, useEffect, useReducer } from 'react'
 import Projectile from './Projectile'
 import smash from '../../sounds/Smash.wav'
 import { editM8, m8Profile } from '../../lib/api'
-import { getPayload } from '../../lib/auth'
+import { getPayload, isAuthenticated } from '../../lib/auth'
 import { motion } from 'framer-motion'
+
+const gameOverMessages = [
+  'You couldn\'t catch Covid.', 
+  'Get off our website unless you score better than that.',
+  'Does your husband know you play Cricket?',
+  'Can you explain what you were going for, exactly?',
+  'That\'s really awesome—especially for you.',
+  'I’m sure you’re doing the best you can.',
+  'I feel like I asked too much of you.',
+  'You suck',
+  'Ok I guess you\'re alright',
+  'That\'s actually a decent score',
+  'Almost impressive.',
+  'You need to find something better to do.',
+  'Get a hobby.',
+  'Shouldn\'t you be doing something more productive?',
+  'You\'re doing to be late for wherever you\'re supposed to be.',
+  'What a waste of your time.',
+  'Good job, I suppose...',
+  'You should probably tell your family that you\'re not missing.',
+  'Do you seriously have nothing better to do?',
+  'If you have this much free time you should be playing Runescape.'
+]
 
 function reducer(state, action) {
   if (action.type === 'ballisticFlight') {
@@ -26,7 +49,6 @@ function reducer(state, action) {
   } else if (action.type === 'reset') {
     const newYStart = 0
     const newXStart = (Math.random() * 110) - 10
-    console.log((newXStart + 10) / 110 * 6)
     return {
       xStart: newXStart,
       xPosition: newXStart,
@@ -63,6 +85,7 @@ export default function Game() {
       falling: false,
     }
   )
+  const isLoggedIn = isAuthenticated()
   const [isPlaying, setIsPlaying] = useState(true)
   const [intervalId, setIntervalId] = useState(0)
   const [platesCaught, setPlatesCaught] = useState(0)
@@ -83,13 +106,12 @@ export default function Game() {
       const { data } = await m8Profile(m8Id)
       setM8(data)
     }
-    if (!m8) {
+    if (!m8 && isLoggedIn) {
       getData()
     }
   }, [platesCaught])
 
   const newProjectile = () => {
-    console.log('new')
     dispatch({ type: 'reset' })
   }
 
@@ -109,8 +131,7 @@ export default function Game() {
     setTimeout(() => {
       setIsPlaying(false)
     }, 1000)
-    if (m8.highScore < platesCaught) {
-      console.log('here')
+    if (isLoggedIn && m8.highScore < platesCaught) {
       await editM8(m8Id, { highScore: platesCaught })
     } 
   }
@@ -122,9 +143,10 @@ export default function Game() {
     setPlatesCaught(0)
   }
 
-  // const gameOverMessage = () => {
-    
-  // }
+  const gameOverMessage = () => {
+    const index = Math.floor(platesCaught / 10)
+    return (gameOverMessages[index < gameOverMessages.length ? index : gameOverMessages.length - 1])
+  }
 
   return (
     <motion.div 
@@ -153,7 +175,12 @@ export default function Game() {
           </div>
           :
           <div className="apres">
-            {smashed && <h1>You caught {platesCaught} plates</h1>}
+            {smashed && (
+              <>
+                <h1>Score: {platesCaught} plates</h1>
+                <h3>{gameOverMessage()}</h3>
+              </>
+            )}
             <button className="button" onClick={startGame}>Play{smashed ? ' again' : ''}</button>
           </div>
         }
