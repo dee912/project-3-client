@@ -8,7 +8,6 @@ import { motion } from 'framer-motion'
 const gameOverMessages = [
   'You couldn\'t catch Covid.', 
   'Get off our website unless you score better than that.',
-  'Does your husband know you play Cricket?',
   'Can you explain what you were going for, exactly?',
   'That\'s really awesome—especially for you.',
   'I’m sure you’re doing the best you can.',
