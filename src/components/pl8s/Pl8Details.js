@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { isAuthenticated } from '../../lib/auth'
 
 export default function Pl8Details({ name, description, r8ings, meanR8ing, handleR8ing, r8ingOptions, origin, prepTime, cookTime, ingredients, recipe, m8 }) {
   console.log(m8)
@@ -13,7 +14,7 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
         :
         <span>No r8ings yet</span>
       }</h2>
-      <select
+      {isAuthenticated() && <select
         onChange={handleR8ing}
       >
         {r8ingOptions.map(option => (
@@ -22,7 +23,7 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
             value={option}
           >{option}</option>
         ))}
-      </select>
+      </select>}
       <hr />
       <h2 className="title is-3">Origin:</h2>
       <p>{origin}</p>
@@ -42,7 +43,7 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
       </ol>
       <hr />
       <h2 className="title is-3">Pl8 Maker:</h2>
-      <Link to={ m8.deleted ? '#' : `/m8/${m8._id}`}>{m8.deleted ? 'M8 is no longer with us' : m8.username}</Link>
+      <Link to={m8.deleted ? '#' : `/m8/${m8._id}`}>{m8.deleted ? 'M8 is no longer with us' : m8.username}</Link>
       <hr />
     </>
   )
