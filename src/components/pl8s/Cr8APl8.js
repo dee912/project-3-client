@@ -26,11 +26,9 @@ export default function Cr8APl8() {
       console.log(data._id)
       history.push(`/pl8s/${data._id}`)
     } catch (err) {
-      console.log(err)
+      setFormErrors({ ...formErrors, ...err.response.data })
     }
   }
-
-  console.log(formdata)
 
   return (
     <motion.div  

@@ -88,7 +88,6 @@ export default function Game() {
   }, [platesCaught])
 
   const newProjectile = () => {
-    console.log('new')
     dispatch({ type: 'reset' })
   }
 
@@ -109,7 +108,6 @@ export default function Game() {
       setIsPlaying(false)
     }, 1000)
     if (m8.highScore < platesCaught) {
-      console.log('here')
       await editM8(m8Id, { highScore: platesCaught })
     } 
   }
