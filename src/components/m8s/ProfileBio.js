@@ -11,7 +11,7 @@ export default function ProfileBio({ highScore,formdata, edit, handleChange }) {
       </div>
       <hr className="profileHr"/>
       <div className="media-content">
-        <h2 className="subtitle">Throw a pl8 Highscore</h2>
+        <h2 className="subtitle">Don&apos;t drop the pl8 Highscore</h2>
       </div>
       <br/>
       <div className="media-content">
