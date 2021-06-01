@@ -1,10 +1,8 @@
-import { useState, useEffect, useReducer, useCallback } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import Projectile from './Projectile'
 import smash from '../../sounds/Smash.wav'
 import { editM8, m8Profile } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
-
-
 import { motion } from 'framer-motion'
 
 function reducer(state, action) {
@@ -48,7 +46,6 @@ function reducer(state, action) {
     return state
   }
 }
-
 
 export default function Game() {
   const [state, dispatch] = useReducer(
