@@ -8,7 +8,7 @@ export default function Projectile({ handleCatch, handleSmash, xPosition, yPosit
     if (falling && (xPixels < 0 || xPixels > 700 || yPixels > 600)) {
       handleSmash()
     }
-  }, [xPosition, yPosition])
+  }, [falling, handleSmash, xPixels, yPixels])
 
   return (
     <svg 
