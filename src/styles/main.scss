@@ -516,7 +516,7 @@ textarea {
   .commentImage{
     border: 1px solid black;
     border-radius: 50%;
-    height: 50%;
+    height: 40%;
     margin: 0 10px;
     width: 10%;
     img {
@@ -689,7 +689,8 @@ textarea {
           .imageLink {
             border: 1px solid black;
             border-radius: 50%;
-            height: 50%;
+            height: 40%;
+            margin: 0 10px;
           }
         }
         small {
