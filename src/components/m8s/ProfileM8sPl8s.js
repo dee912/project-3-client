@@ -31,7 +31,7 @@ export default function ProfilePl8s({ username, r8dPl8s }) {
           ))
         ) : (
           <div className="cardScroll">
-            <h5 className="title is-4">This m8&apos;s r8ed no pl8s</h5>
+            <p className="title is-4">This m8&apos;s r8ed no pl8s</p>
             <img className="friends" src="https://i.kym-cdn.com/entries/icons/facebook/000/017/966/jordan-crying.jpg" alt="sad jordan"/>
           </div>)
         }

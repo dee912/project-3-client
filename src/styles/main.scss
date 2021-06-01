@@ -137,8 +137,10 @@ body {
     font-family: $font-cursive;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     color: rgb(151, 151, 151);
-}
-
+  }
+  .toPl8s{
+    cursor: pointer;
+  }
   .plate{
     cursor: pointer;
     transition: transform 50ms ease-in-out;
@@ -159,7 +161,6 @@ body {
   .exploded {
     @include exploded
   }
-
   button {
     animation: fadeIn 5s;
     position: absolute;
@@ -173,6 +174,7 @@ body {
     font-family: $font-cursive;
   }
 }
+
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
@@ -294,11 +296,6 @@ textarea {
   }
   h1 {
     font-size: 40px;
-  }
-  .username {
-    margin-left: 40px;
-    font-size: 20px;
-    font-weight: bold;
   }
   h5, h3, h1, a, p, li, label {
     font-family: $font-sans;

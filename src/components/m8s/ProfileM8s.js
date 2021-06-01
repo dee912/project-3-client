@@ -23,7 +23,7 @@ export default function ProfileM8s({ formdata, m8s, setM8 }) {
         )}
         {!activeM8s && (
           <div className="cardScroll">
-            <h3 className="username">No m8s</h3>
+            <p className="username">No m8s</p>
             <img className="friends" src="https://i.kym-cdn.com/entries/icons/facebook/000/017/966/jordan-crying.jpg" alt="sad jordan" />
           </div>)
         }
