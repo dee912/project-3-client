@@ -32,7 +32,6 @@ export default function Register() {
       setFormErrors({ ...formErrors, ...err.response.data })
     }
   }
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
