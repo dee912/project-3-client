@@ -307,13 +307,19 @@ textarea {
       color: whitesmoke;
     }
   }
+  .subtitle {
+    margin-bottom: 0;
+  }
+  .information {
+    margin-top: 0px; 
+  }
   h1 {
     font-size: 40px;
   }
-  h5, h3, h1, a, p, li, label {
+  h5, h3, h2, h1, a, p, li, label {
     font-family: $font-sans;
   }
-  h5, h3, h1, label {
+  h5, h3, h2, h1, label {
     color: rgb(68, 68, 67);
   }
   h5 {

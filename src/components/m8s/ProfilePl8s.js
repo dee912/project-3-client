@@ -27,7 +27,7 @@ export default function ProfilePl8s({ username }) {
   return (
     <section>
       <div className="media-content">
-        <h3 className="title is-4">{username}&apos;s pl8s</h3>
+        <h2 className="title is-4">{username}&apos;s pl8s</h2>
       </div>
       <br />
       <div className="containerScroll">
