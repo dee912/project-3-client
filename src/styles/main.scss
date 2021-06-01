@@ -266,6 +266,12 @@ textarea {
     flex-direction: column;
     margin: 0 130px 25px 100px;
   }
+  .card {
+    border-radius: 5px;
+    img {
+      border-radius: 5px;
+    }
+  }
   .profile-pic {
     display: flex;
     flex-direction: column;
@@ -765,5 +771,3 @@ form {
 .form {
   @include center-horizontally;
 }
-
-// @import '~bulma/bulma.sass';
