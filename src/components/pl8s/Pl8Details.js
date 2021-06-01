@@ -41,7 +41,7 @@ export default function Pl8Details({ name, description, r8ings, meanR8ing, handl
         ))}
       </ol>
       <hr />
-      <h3 className="title is-3">Pl8 Maker:</h3>
+      <h2 className="title is-3">Pl8 Maker:</h2>
       <Link to={ m8.deleted ? '#' : `/m8/${m8._id}`}>{m8.deleted ? 'M8 is no longer with us' : m8.username}</Link>
       <hr />
     </>
