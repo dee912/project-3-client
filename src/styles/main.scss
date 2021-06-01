@@ -191,7 +191,7 @@ body {
 
 .game-page{
   z-index: 999;
-  background-color: #03715b;
+  @include gradient($color: white, $background: "https://img.freepik.com/free-photo/top-view-fresh-fruits-colorful-ripe-wooden-desk-white-background-fruits-color-food-photo_140725-22724.jpg?size=626&ext=jpg&ga=GA1.2.1149860058.1620604800");
   font-family: $font-cursive;
   text-align: center;
   @include center-horizontally;
@@ -209,6 +209,7 @@ body {
     .projectile {
       z-index: 998;
       overflow: visible;
+      position: relative;
       &:hover {
         cursor: grab;
       }

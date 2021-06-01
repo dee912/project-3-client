@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 
-export default function Projectile({ handleCatch, handleSmash, xPosition, yPosition, height, width, falling, smashed }) {
-  const xPixels = (xPosition * width / 100)
-  const yPixels = height - (yPosition * height / 100)
+export default function Projectile({ handleCatch, handleSmash, xPosition, yPosition, falling, smashed }) {
+  const xPixels = (xPosition * 8)
+  const yPixels = 600 - (yPosition * 6)
 
   console.log(smashed)
 
   useEffect(() => {
-    if (falling && (xPixels < 0 || xPixels > width - 100 || yPixels > height)) {
+    if (falling && (xPixels < 0 || xPixels > 700 || yPixels > 600)) {
       handleSmash()
     }
   }, [xPosition, yPosition])
@@ -20,7 +20,7 @@ export default function Projectile({ handleCatch, handleSmash, xPosition, yPosit
       stroke='black' 
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleCatch} 
-      style={ { position: 'relative', left: `${xPixels}px`, top: `${yPixels - 100}px` } }
+      style={ { left: `${xPixels}px`, top: `${yPixels - 100}px` } }
       className={(smashed ? 'exploded ' : '') + 'projectile'}
     >
       <g className='topLeft'>

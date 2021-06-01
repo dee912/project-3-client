@@ -64,8 +64,8 @@ export default function Game() {
   const [isPlaying, setIsPlaying] = useState(true)
   const [intervalId, setIntervalId] = useState(0)
   const [platesCaught, setPlatesCaught] = useState(0)
-  const [height, setHeight] = useState(null)
-  const [width, setWidth] = useState(null)
+  const height = 600
+  const width = 800
   const [smashed, setSmashed] = useState(false)
   
   useEffect(() => {
@@ -107,20 +107,12 @@ export default function Game() {
     setPlatesCaught(0)
   }
 
-  const gameScreen = useCallback(node => {
-    try {
-      setHeight(node.getBoundingClientRect().height)
-      setWidth(node.getBoundingClientRect().width)
-    } catch (err) {
-      console.log(err)
-    }
-  }, [])
 
   return (
     <div className="game-page">
       {isPlaying ? 
         <>
-          <div className="game-screen" ref={gameScreen}>
+          <div className="game-screen">
             <audio id="smash"/>
             <Projectile 
               className="projectile"
