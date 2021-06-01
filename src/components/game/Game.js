@@ -3,8 +3,6 @@ import Projectile from './Projectile'
 import smash from '../../sounds/Smash.wav'
 import { editM8, m8Profile } from '../../lib/api'
 import { getPayload } from '../../lib/auth'
-
-
 import { motion } from 'framer-motion'
 
 function reducer(state, action) {
@@ -81,11 +79,13 @@ export default function Game() {
         dispatch({ type: 'ballisticFlight' })  
       }, 10))
     }
-    const getData = async () => {
-      const { data } = await m8Profile(m8Id)
-      setM8(data)
+    if (!m8) {
+      const getData = async () => {
+        const { data } = await m8Profile(m8Id)
+        setM8(data)
+      }
+      getData()
     }
-    getData()
   }, [platesCaught])
 
   const newProjectile = () => {
@@ -122,9 +122,9 @@ export default function Game() {
     setPlatesCaught(0)
   }
 
-  const gameOverMessage = () => {
+  // const gameOverMessage = () => {
     
-  }
+  // }
 
   return (
     <motion.div 
