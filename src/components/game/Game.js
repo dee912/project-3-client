@@ -98,6 +98,7 @@ export default function Game() {
     setTimeout(() => {
       setIsPlaying(false)
     }, 1000)
+    console.log(`(x: ${state.xPosition}, y: ${state.yPosition})`)
   }
 
   const startGame = () => {
@@ -111,7 +112,7 @@ export default function Game() {
   return (
     <div className="game-page">
       {isPlaying ? 
-        <>
+        <div className="container">
           <div className="game-screen">
             <audio id="smash"/>
             <Projectile 
@@ -127,7 +128,7 @@ export default function Game() {
             />
           </div>
           <h1>Plates Caught: {platesCaught}</h1>
-        </>
+        </div>
         :
         <div className="apres">
           {smashed && <h1>You caught {platesCaught} plates</h1>}

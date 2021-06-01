@@ -20,7 +20,7 @@ export default function Projectile({ handleCatch, handleSmash, xPosition, yPosit
       stroke='black' 
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleCatch} 
-      style={ { left: `${xPixels}px`, top: `${yPixels - 100}px` } }
+      style={ { left: `${xPixels - 400}px`, top: `${yPixels - 100}px` } }
       className={(smashed ? 'exploded ' : '') + 'projectile'}
     >
       <g className='topLeft'>
