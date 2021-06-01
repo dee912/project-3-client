@@ -107,7 +107,7 @@ export default function Game() {
     if (!m8 && isLoggedIn) {
       getData()
     }
-  }, [platesCaught, intervalId, isLoggedIn, m8, m8Id, smashed])
+  }, [platesCaught])
 
   const newProjectile = () => {
     dispatch({ type: 'reset' })
