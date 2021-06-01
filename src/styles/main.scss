@@ -1,21 +1,121 @@
 * {
   box-sizing:b border-box;
+  text-decoration: none;
 }
 
-body {
-  overflow-y: hidden;
+
+
+@mixin gradient($color, $background) {
+  background: url($background),
+  linear-gradient($color, transparent),
+  linear-gradient(to top, $color, transparent);
+  background-blend-mode: screen;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin button($width: 200px, $height: 50px, $background-color: rgba(0, 0, 255, 0), $border-color: rgb(68, 68, 67), $font-color: rgb(68, 68, 67), $hover-background-color: rgba(165, 42, 42, 0.5), $hover-font-color: rgb(255, 255, 255)) {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  width: $width;
+  height: $height;
+  margin: 10px;
+  font-size: 18px;
+  color: $font-color;
+  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
+  &:hover {
+    background-color: $hover-background-color;
+    color: $hover-font-color;
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+}
+
+@mixin center-horizontally {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@mixin exploded {
+  cursor: initial;
+  .topLeft {
+    transform: translate(-8vw, -9vh) rotate(-70deg);
+  }
+  .topRight {
+    transform: translate(8vw, -5vh) rotate(100deg);
+  }
+  .bottomLeft {
+    transform: translate(-6vw, 12vh) rotate(60deg);
+  }
+  .bottomRight {
+    transform: translate(6vw, 10vh) rotate(120deg);
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+$font-sans: 'Open Sans', sans-serif;
+$font-cursive: 'Righteous', cursive;
 
-.background {
+body {
+  margin: 0;
+}
+
+.containerNav{
+  overflow: hidden;
+  background-color: rgba(114, 114, 114, 0.527);
+  font-family: $font-sans;
+  height: 50px;
+  .navbar-item{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 25px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.425);
+      color: black;
+      transition: 0.3s;
+      box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+  .plate-button {
+    padding-top: 0;
+    border-radius: 0px;
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-sans;
+    font-size: 17px;
+    height: 50px;
+    width: 150px;
+    float: right;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    text-decoration: none;
+  }
+  .button:hover {
+    background-color: rgba(255, 255, 255, 0.425);
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.5s;
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+.homeBackground {
   width: 100%;
   height: 100vh;
-  background: url(https://cdn.wallpapersafari.com/26/92/0KH5pV.jpg),
-  linear-gradient(rgb(255, 255, 255), transparent),
-  linear-gradient(to top, rgb(255, 255, 255), transparent);
-  background-blend-mode: screen;
+  @include gradient($color: white, $background: 'https://cdn.wallpapersafari.com/26/92/0KH5pV.jpg')
 }
 
 .home {
@@ -34,7 +134,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     font-size: 100px;
-    font-family: 'Righteous', cursive;
+    font-family: $font-cursive;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     color: rgb(151, 151, 151);
 }
@@ -57,19 +157,7 @@ body {
     transform: scale(1.4);
   }
   .exploded {
-    cursor: initial;
-    .topLeft {
-      transform: translate(-8vw, -9vh) rotate(-70deg);
-    }
-    .topRight {
-      transform: translate(8vw, -5vh) rotate(100deg);
-    }
-    .bottomLeft {
-      transform: translate(-6vw, 12vh) rotate(60deg);
-    }
-    .bottomRight {
-      transform: translate(6vw, 10vh) rotate(120deg);
-    }
+    @include exploded
   }
 
   button {
@@ -82,7 +170,7 @@ body {
     text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     border: none;
     background: none;
-    font-family: 'Righteous', cursive;
+    font-family: $font-cursive;
   }
 }
 @keyframes fadeIn {
@@ -101,29 +189,32 @@ body {
   }
 }
 
-.game {
-  width: 98vw;
-  height: 800px;
-  border: 3px solid black;
-  .projectile {
-    overflow: visible;
-    &:hover {
-      cursor: grab;
-    }
+.game-page{
+  z-index: 999;
+  background-color: #03715b;
+  font-family: $font-cursive;
+  text-align: center;
+  @include center-horizontally;
+  padding: 100px;
+  .button {
+    @include button($background-color: rgba(0, 0, 0, 1));
+    justify-self: center;
   }
-  .exploded {
-    cursor: initial;
-    .topLeft {
-      transform: translate(-8vw, -9vh) rotate(-70deg);
+  .game-screen {
+    width: 800px;
+    height: 600px;
+    border: 3px solid black;
+    background-color: white;
+    overflow: hidden;
+    .projectile {
+      z-index: 998;
+      overflow: visible;
+      &:hover {
+        cursor: grab;
+      }
     }
-    .topRight {
-      transform: translate(8vw, -5vh) rotate(100deg);
-    }
-    .bottomLeft {
-      transform: translate(-6vw, 12vh) rotate(60deg);
-    }
-    .bottomRight {
-      transform: translate(6vw, 10vh) rotate(120deg);
+    .exploded {
+      @include exploded;
     }
   }
 }
@@ -134,18 +225,77 @@ textarea {
 }
 
 .cardIndex {
-  h5 {
-    font-family: 'Open Sans', sans-serif;
+    @include gradient($color: white, $background: "https://c1.wallpaperflare.com/preview/135/201/157/background-food-tasty-olives.jpg");
+    height: auto;
+    min-height: 100vh;
+    padding: 0 100px;
+  .title {
+    font-family: $font-sans;
+    font-weight: bold;
     color: rgb(68, 68, 67);
+  }
+  .index-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+  }
+  .input {
+    height: 35px;
+    border: 2px solid rgb(114, 114, 114);
+    border-radius: 30px;
+    padding: 0px 10px;
+    margin-top: 20px;
+    font-family: $font-sans;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.1);
   }
 }
 
 .profilePage {
+  @include gradient($color: white, $background: "https://cdn.hipwallpaper.com/i/0/68/OG1FLx.jpg");
+  .profile-top {
+    display: flex;
+    flex-direction: row;
+  }
+  .profile-bottom {
+    display: flex;
+    flex-direction: column;
+    margin: 0 130px 25px 100px;
+  }
+  .profile-pic {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-top: 20px;
+  }
+  .bio-section {
+    margin-left: 50px;
+  }
+  .m8Remover {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      position: relative;
+      top: 20px;
+      background-color: red;
+      color: whitesmoke;
+    }
+  }
   h1 {
     font-size: 40px;
   }
+  .username {
+    margin-left: 40px;
+    font-size: 20px;
+    font-weight: bold;
+  }
   h5, h3, h1, a, p, li, label {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-sans;
   }
   h5, h3, h1, label {
     color: rgb(68, 68, 67);
@@ -161,25 +311,7 @@ textarea {
   }
   
   button {
-    background-color: rgba(0, 0, 255, 0);
-    border: 1px solid rgb(68, 68, 67);
-    border-radius: 5px;
-    width: 200px;
-    height: 50px;
-    margin: 10px;
-    font-size: 18px;
-    color: rgb(68, 68, 67);
-    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
-  }
-  button:hover {
-    background-color: rgba(165, 42, 42, 0.5);
-    color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-  }
-  .removeM8 {
-    width: 25px;
-    height: 25px;
+    @include button
   }
   .removeM8:hover {
     box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
@@ -190,6 +322,9 @@ textarea {
     border: 0;
     height: 2px;
     background: rgba(255, 255, 255, 0);
+  }
+  img {
+    max-width: 600px;
   }
   ::-webkit-scrollbar {
   width: 8px;
@@ -215,8 +350,6 @@ textarea {
   }
 }
 
-
-
 .containerScroll {
   display: flex;
   overflow-x: scroll;
@@ -224,7 +357,6 @@ textarea {
   padding: 3px;
   border-radius: 5px;
 }
-
 
 .cardScroll {
   background-color: rgba(255, 255, 255, 0.3);
@@ -267,11 +399,25 @@ textarea {
 }
 
 .showCard {
+    @include gradient($color: white, $background: "https://images.squarespace-cdn.com/content/v1/5463df57e4b05c41e0cdd600/1439492263995-ADPX7TVR1SA5VUEFOWAS/ke17ZwdGBToddI8pDm48kOvSl7uZBiJvhHNx8kGuj7N7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQJVLCXI9FCYomYbws-y-45T4YLCF5qkYPw7Lwwtgtn6_Pu309TggK9CQbI7GxGOBQ/image-asset.jpeg?format=2500w");
+  .columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .is-half {
+    margin-left: 200px;
+    width: 30vw;
+    float: left;
+  }
   h1 {
     font-size: 40px;
   }
-  h5, h3, h1, a, p, li, label {
-    font-family: 'Open Sans', sans-serif;
+  h3, h2, h1, a, p, li, label {
+    font-family: $font-sans;
+  }
+  h3 {
+    font-weight: bold;
   }
   h5, h3, h1, label {
     color: rgb(68, 68, 67);
@@ -282,11 +428,16 @@ textarea {
     color: brown;
     font-style: italic;
   }
+  ul, ol {
+    padding-left: 0px;
+  }
   .showImage {
     box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
     border-radius: 5px;
   }
   select {
+    font-family: $font-sans;
+    font-weight: bolder;
     background-color: rgba(0, 0, 255, 0);
     border: 2px solid rgb(68, 68, 67);
     border-radius: 5px;
@@ -302,26 +453,39 @@ textarea {
     cursor: pointer;
   }
   button {
-    background-color: rgba(0, 0, 255, 0);
-    border: 1px solid rgb(68, 68, 67);
-    border-radius: 5px;
-    width: 200px;
-    height: 50px;
-    margin: 10px;
-    font-size: 18px;
-    color: rgb(68, 68, 67);
-    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.18);
-  }
-  button:hover {
-    background-color: rgba(165, 42, 42, 0.5);
-    color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    @include button
   }
   hr {
     border: 0;
     height: 2px;
     background: rgba(255, 255, 255, 0);
+  }
+  .commentLayout {
+    height: 75px;
+    width: 400px;
+    p {
+      margin-left: 10px;
+    }
+    img {
+      border: 1px solid black;
+    }
+    .commentImage {
+      border: none;
+    }
+  }
+  input {
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid grey;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-button{
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
   }
 }
 
@@ -539,6 +703,7 @@ textarea {
     }
   }
 }
+
 .addM8 , .removeM8{
   position: absolute;
   top: 80px;
@@ -546,6 +711,7 @@ textarea {
   background-color: lightskyblue;
   font-size: 20px;
 }
+
 .removeM8 {
   background-color: red;
 }
@@ -567,31 +733,16 @@ textarea {
 }
 
 .cardIndex {
-  background: url(https://c1.wallpaperflare.com/preview/135/201/157/background-food-tasty-olives.jpg),
-  linear-gradient(rgb(255, 255, 255), transparent),
-  linear-gradient(to top, rgb(255, 255, 255), transparent);
+  @include gradient($color: white, $background: "https://c1.wallpaperflare.com/preview/135/201/157/background-food-tasty-olives.jpg");
   height: auto;
-  background-blend-mode: screen;
-  background-size: cover;
-  background-position: center;
 }
 
 .showCard{
-  background: url(https://images.squarespace-cdn.com/content/v1/5463df57e4b05c41e0cdd600/1439492263995-ADPX7TVR1SA5VUEFOWAS/ke17ZwdGBToddI8pDm48kOvSl7uZBiJvhHNx8kGuj7N7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQJVLCXI9FCYomYbws-y-45T4YLCF5qkYPw7Lwwtgtn6_Pu309TggK9CQbI7GxGOBQ/image-asset.jpeg?format=2500w),
-  linear-gradient(rgb(255, 255, 255), transparent),
-  linear-gradient(to top, rgb(255, 255, 255), transparent);
-  background-blend-mode: screen;
-  background-size: cover;
-  background-position: center;
+  @include gradient($color: white, $background: "https://images.squarespace-cdn.com/content/v1/5463df57e4b05c41e0cdd600/1439492263995-ADPX7TVR1SA5VUEFOWAS/ke17ZwdGBToddI8pDm48kOvSl7uZBiJvhHNx8kGuj7N7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQJVLCXI9FCYomYbws-y-45T4YLCF5qkYPw7Lwwtgtn6_Pu309TggK9CQbI7GxGOBQ/image-asset.jpeg?format=2500w")
 }
 
 .profilePage {
-  background: url(https://cdn.hipwallpaper.com/i/0/68/OG1FLx.jpg),
-  linear-gradient(rgb(255, 255, 255), transparent),
-  linear-gradient(to top, rgb(255, 255, 255), transparent);
-  background-blend-mode: screen;
-  background-size: cover;
-  background-position: center;
+  @include gradient($color: white , $background: "https://cdn.hipwallpaper.com/i/0/68/OG1FLx.jpg")
 }
 
 .card {
@@ -602,6 +753,54 @@ textarea {
   color: red;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $font-sans;
+  width: 300px;
+  .times {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .field {
+      flex: 1;
+      input {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #a8a8a8;
+      }
+    }
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .label {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .input {
+      padding: 5px;
+      width: 288px;
+      border-radius: 5px;
+      border: 1px solid #a8a8a8;
+    }
+    .multi-select {
+      width: 100%;
+    }
+  }
+  .button {
+    @include button;
+    align-self: center;
+  }
+  .small-button {
+    @include button($width: 100px, $height: 30px);
+    align-self: center;
+  }
+}
+.form {
+  @include center-horizontally;
+}
 
-
-@import '~bulma/bulma.sass';
+// @import '~bulma/bulma.sass';

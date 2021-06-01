@@ -32,10 +32,10 @@ export default function Nav() {
   }, [location.pathname])
 
   return (
-    <nav className="navbar is-white is-fullwidth">
-      <div className="container">
+    <nav className="navbar">
+      <div className="containerNav">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item" onMouseEnter={() => setVisibleCracks(true)} onMouseLeave={() => setVisibleCracks(false)}>
+          <Link to="/" className="navbar-item plate-button" onMouseEnter={() => setVisibleCracks(true)} onMouseLeave={() => setVisibleCracks(false)}>
             <PlateForNav visibleCracks={visibleCracks}/>
           </Link>
           <Link to="/pl8s" className="navbar-item">
@@ -57,28 +57,23 @@ export default function Nav() {
               </Link>
             </>
           }
-          <div className="navbar-menu">
-            <div className="navbar-end">
-              <div className="buttons">
-                {isLoggedIn ?
-                  <button className="button" onClick={handleLogout}>
+          <div className="buttons">
+            {isLoggedIn ?
+              <button className="button" onClick={handleLogout}>
                   Log Out
-                  </button>
-                  :
-                  <>
-                    <Link to="/login" className="button">
+              </button>
+              :
+              <>
+                <Link to="/login" className="button">
                     Login
-                    </Link>
-                    <Link to="/become-a-m8" className="button">
+                </Link>
+                <Link to="/become-a-m8" className="button">
                     Become a M8
-                    </Link>
-                  </>
-                }
-              </div>
-            </div>
+                </Link>
+              </>
+            }
           </div>
         </div>
-        
       </div>
     </nav>  
   )

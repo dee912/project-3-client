@@ -12,7 +12,7 @@ export default function ProfileM8s({ formdata, m8s, setM8 }) {
   return (
     <section>
       <div className="media-content">
-        <h3 className="title is-4">{formdata.username}&apos;s m8s</h3>
+        <h3 className="username">{formdata.username}&apos;s m8s</h3>
       </div>
       <br />
       <div className="containerScroll">
@@ -23,7 +23,7 @@ export default function ProfileM8s({ formdata, m8s, setM8 }) {
         )}
         {!activeM8s && (
           <div className="cardScroll">
-            <h3 className="title is-4">No m8s</h3>
+            <h3 className="username">No m8s</h3>
             <img className="friends" src="https://i.kym-cdn.com/entries/icons/facebook/000/017/966/jordan-crying.jpg" alt="sad jordan" />
           </div>)
         }

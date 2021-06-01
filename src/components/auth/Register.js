@@ -21,6 +21,10 @@ export default function Register() {
 
   const handleSubmit = async event => {
     event.preventDefault()
+    if (!formdata.passwordConfirmation) {
+      setFormErrors({ ...formErrors, passwordConfirmation: 'The passwords need to match' })
+      return
+    }
     try {
       if (!formdata.avatar) {
         await registerM8({ ...formdata, avatar: 'https://i.stack.imgur.com/l60Hf.png' })
@@ -40,16 +44,15 @@ export default function Register() {
     >
       <section className="section">
         <div className="container">
-          <div className="columns">
+          <div className="form">
             <form
-              className="column is-half is-offset-one-quarter box"
               onSubmit={handleSubmit}
             >
               <div className="field">
                 <label className="label">Username</label>
                 <div className="control">
                   <input
-                    className={`input ${formErrors.username ? 'is-danger' : ''}`}
+                    className={`input ${formErrors.username ? 'invalid' : ''}`}
                     placeholder="Username"
                     onChange={handleChange}
                     name="username"
@@ -57,28 +60,28 @@ export default function Register() {
                   />
                 </div>
                 {formErrors.username && (
-                  <p className="help is-danger">{formErrors.username}</p>
+                  <p className="help invalid">{formErrors.username}</p>
                 )}
               </div>
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
                   <input
-                    className={`input ${formErrors.email ? 'is-danger' : ''}`}
+                    className={`input ${formErrors.email ? 'invalid' : ''}`}
                     placeholder="Email"
                     onChange={handleChange}
                     name="email"
                     value={formdata.email}
                   />
                 </div>
-                {formErrors.email && <p className="help is-danger">{formErrors.email}</p>}
+                {formErrors.email && <p className="help invalid">{formErrors.email}</p>}
               </div>
               <div className="field">
                 <label className="label">Password</label>
                 <div className="control">
                   <input
                     type="password"
-                    className={`input ${formErrors.password ? 'is-danger' : ''}`}
+                    className={`input ${formErrors.password ? 'invalid' : ''}`}
                     placeholder="Password"
                     onChange={handleChange}
                     name="password"
@@ -86,7 +89,7 @@ export default function Register() {
                   />
                 </div>
                 {formErrors.password && (
-                  <p className="help is-danger">{formErrors.password}</p>
+                  <p className="help invalid">{formErrors.password}</p>
                 )}
               </div>
               <div className="field">
@@ -95,7 +98,7 @@ export default function Register() {
                   <input
                     type="password"
                     className={`input ${
-                      formErrors.passwordConfirmation ? 'is-danger' : ''
+                      formErrors.passwordConfirmation ? 'invalid' : ''
                     }`}
                     placeholder="Password Confirmation"
                     onChange={handleChange}
@@ -104,11 +107,13 @@ export default function Register() {
                   />
                 </div>
                 {formErrors.passwordConfirmation && (
-                  <p className="help is-danger">{formErrors.passwordConfirmation}</p>
+                  <p className="help invalid">{formErrors.passwordConfirmation}</p>
                 )}
               </div>
               <div className="field">
-                <ImageUpload onUpload={handleImageUpload} />
+                <ImageUpload 
+                  onUpload={handleImageUpload} 
+                />
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">

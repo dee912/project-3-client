@@ -9,7 +9,7 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
   }
 
   return (
-    <div className="column is-5 is-offset-0">
+    <div className="column profile-pic">
       <div className="card">
         <div className="card-image">
           <div className="card-content">
@@ -17,7 +17,7 @@ export default function ProfilePic({ _id, setEdit, edit, formdata, handleChange,
               <div className="media-left">
               </div>
               <div className="media-content">
-                {!edit && <h3 className="title is-4">{formdata.username}</h3>}
+                {!edit && <h3 className="username">{formdata.username}</h3>}
                 <small className='invalid'>{nameTaken.username}</small>
                 {edit && <input className='title is-4' name='username' value={formdata.username} onChange={handleChange} />}
               </div>

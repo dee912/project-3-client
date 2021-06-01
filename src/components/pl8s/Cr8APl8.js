@@ -38,22 +38,15 @@ export default function Cr8APl8() {
       animate={{ opacity: 1  }} 
       exit={{ opacity: 0 }}
     >
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-half is-offset-one-quarter box">
-              <Pl8Form
-                formdata={formdata}
-                formErrors={formErrors}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                setFormErrors={setFormErrors}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      
+      <div className="form">
+        <Pl8Form
+          formdata={formdata}
+          formErrors={formErrors}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          setFormErrors={setFormErrors}
+        />
+      </div>
     </motion.div>
   )
 }
