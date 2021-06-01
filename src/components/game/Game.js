@@ -68,8 +68,8 @@ export default function Game() {
   const [isPlaying, setIsPlaying] = useState(true)
   const [intervalId, setIntervalId] = useState(0)
   const [platesCaught, setPlatesCaught] = useState(0)
-  const [height, setHeight] = useState(null)
-  const [width, setWidth] = useState(null)
+  const height = 600
+  const width = 800
   const [smashed, setSmashed] = useState(false)
   const [m8, setM8] = useState(false)
   const { m8Id } = getPayload()
@@ -122,14 +122,6 @@ export default function Game() {
     setPlatesCaught(0)
   }
 
-  const gameScreen = useCallback(node => {
-    try {
-      setHeight(node.getBoundingClientRect().height)
-      setWidth(node.getBoundingClientRect().width)
-    } catch (err) {
-      console.log(err)
-    }
-  }, [])
 
   return (
     <motion.div 
@@ -139,8 +131,8 @@ export default function Game() {
     >
       <div className="game-page">
         {isPlaying ? 
-          <>
-            <div className="game-screen" ref={gameScreen}>
+          <div className="container">
+            <div className="game-screen">
               <audio id="smash"/>
               <Projectile 
                 className="projectile"
@@ -155,7 +147,7 @@ export default function Game() {
               />
             </div>
             <h1>Plates Caught: {platesCaught}</h1>
-          </>
+          </div>
           :
           <div className="apres">
             {smashed && <h1>You caught {platesCaught} plates</h1>}
