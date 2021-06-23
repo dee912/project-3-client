@@ -5,6 +5,8 @@ export default function ProfilePl8s({ username, r8dPl8s }) {
   const { m8Id } = useParams()
 
   const findR8ing = (r8ings) => {
+    console.log('rate', r8ings)
+    if (!r8ings) return 0
     return r8ings.find(r8ing => {
       return r8ing.m8 === m8Id
     })
